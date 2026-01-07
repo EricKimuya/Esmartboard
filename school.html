@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>School Solutions - Esmartboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./public/css/style.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+  <!-- Header -->
+  <header class="bg-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <a href="index.html" class="flex items-center">
+          <img src="./public/css/images/Esmartboard logo 3.png" alt="Esmartboard Logo" class="logo-img">
+        </a>
+        
+        <nav class="hidden md:flex items-center space-x-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="school.html" class="nav-link active">School</a>
+          <a href="corporate.html" class="nav-link">Corporate</a>
+          <a href="javascript:void(0)" id="cartButton" class="nav-link relative">
+            <span>Cart</span>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-link">
+            <i class="fas fa-user"></i>
+            <span class="ml-1">Login</span>
+          </a>
+        </nav>
+        
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-800 hover:text-primary-600 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div id="mobile-menu" class="mobile-menu py-4 pb-6">
+        <nav class="flex flex-col space-y-3">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="school.html" class="nav-link active">School</a>
+          <a href="corporate.html" class="nav-link">Corporate</a>
+          <a href="javascript:void(0)" class="nav-link flex items-center">
+            <span>Cart</span>
+            <span class="ml-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-link">
+            <i class="fas fa-user"></i>
+            <span class="ml-1">Login</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart Sidebar -->
+  <div id="cartSidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-white z-50 shadow-lg slide-in overflow-y-auto">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Your Cart</h2>
+        <button id="closeCart" class="text-gray-500 hover:text-gray-700">
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
+      
+      <div id="cartItems" class="space-y-4">
+        <div class="text-center py-8 text-gray-500">Your cart is empty</div>
+      </div>
+      
+      <div class="border-t mt-6 pt-4">
+        <div class="flex justify-between font-semibold text-lg mb-4">
+          <span>Subtotal:</span>
+          <span id="cartSubtotal">$0.00</span>
+        </div>
+        <button class="w-full btn-primary mb-2">Proceed to Checkout</button>
+        <button id="clearCart" class="w-full btn-secondary">Clear Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Hero -->
+    <section class="school-hero text-white py-32">
+      <div class="container mx-auto px-4 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6">
+          Transform Your Classroom with <span class="text-gradient">Interactive Learning</span>
+        </h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8">
+          Engage students, simplify teaching, and boost academic performance
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-6 mb-10 text-sm md:text-base">
+          <div class="flex items-center">
+            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+            <span>Trusted by 500+ Schools</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+            <span>5-Year Warranty</span>
+          </div>
+          <div class="flex items-center">
+            <i class="fas fa-check-circle text-green-400 mr-2"></i>
+            <span>Free Installation</span>
+          </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+          <a href="#products" class="btn-pink text-lg px-8 py-4">View Products</a>
+          <a href="#demo" class="btn-outline-white text-lg px-8 py-4">Request Demo</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          Why Schools Choose <span class="text-gradient">Esmartboard</span>
+        </h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+          Designed for educational environments with features teachers love
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+            <div class="benefit-icon bg-blue-100 mb-4">
+              <i class="fas fa-lightbulb text-3xl text-blue-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Increase Student Engagement</h3>
+            <p class="text-gray-600">Interactive lessons keep students focused and participating</p>
+          </div>
+          
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+            <div class="benefit-icon bg-green-100 mb-4">
+              <i class="fas fa-user-check text-3xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Easy for Teachers</h3>
+            <p class="text-gray-600">Intuitive software requires minimal training</p>
+          </div>
+          
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+            <div class="benefit-icon bg-teal-100 mb-4">
+              <i class="fas fa-shield-alt text-3xl text-teal-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Built for Classrooms</h3>
+            <p class="text-gray-600">Durable, scratch-resistant glass for daily use</p>
+          </div>
+          
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+            <div class="benefit-icon bg-pink-100 mb-4">
+              <i class="fas fa-gift text-3xl text-pink-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Educational Software Included</h3>
+            <p class="text-gray-600">Pre-loaded teaching apps and lesson tools</p>
+          </div>
+          
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+            <div class="benefit-icon bg-blue-100 mb-4">
+              <i class="fas fa-dollar-sign text-3xl text-blue-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Budget-Friendly Options</h3>
+            <p class="text-gray-600">Educational discounts up to 20%</p>
+          </div>
+          
+          <div class="bg-gray-50 p-8 rounded-xl hover:shadow-lg transition">
+            <div class="benefit-icon bg-green-100 mb-4">
+              <i class="fas fa-tools text-3xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Free Installation</h3>
+            <p class="text-gray-600">Complete setup and teacher training included</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section id="products" class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">
+          Choose Your Perfect Solution
+        </h2>
+        <p class="text-center text-gray-600 mb-8">
+          All include educational software, 5-year warranty, free installation
+        </p>
+        
+        <div class="flex flex-wrap justify-center gap-3 mb-12">
+          <button class="filter-btn active" data-filter="all">All Products</button>
+          <button class="filter-btn" data-filter="budget">Budget</button>
+          <button class="filter-btn" data-filter="standard">Standard</button>
+          <button class="filter-btn" data-filter="premium">Premium</button>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="productGrid">
+          
+          <!-- Product 1 -->
+          <div class="product-card-school bg-white rounded-xl overflow-hidden shadow-md" data-category="budget">
+            <div class="relative">
+              <span class="product-badge badge-green">BUDGET PICK</span>
+              <span class="discount-badge">20% Off</span>
+              <img src="https://cdn.pixabay.com/photo/2017/08/04/09/38/monitor-2579683_1280.jpg" alt="Product" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">E-Touch Classroom 55"</h3>
+              
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="spec-badge bg-blue-100 text-blue-800">55"</span>
+                <span class="spec-badge bg-teal-100 text-teal-800">4K</span>
+                <span class="spec-badge bg-gray-100 text-gray-800">Android</span>
+                <span class="spec-badge bg-green-100 text-green-800">20-Touch</span>
+              </div>
+              
+              <ul class="space-y-2 mb-4 text-sm">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Perfect for 30 students</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Built-in teaching tools</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Wireless screen mirroring</span>
+                </li>
+              </ul>
+              
+              <div class="mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="text-gray-400 line-through text-sm">$2,299</span>
+                  <span class="text-3xl font-bold text-blue-600">$1,899</span>
+                </div>
+                <p class="text-sm text-teal-600">or $79/month</p>
+              </div>
+              
+              <button class="w-full btn-pink py-3" onclick="addToCart('E-Touch Classroom 55', 1899)">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card-school bg-white rounded-xl overflow-hidden shadow-md ring-2 ring-pink-500" data-category="standard">
+            <div class="relative">
+              <span class="product-badge badge-pink">BEST SELLER</span>
+              <span class="discount-badge">20% Off</span>
+              <img src="https://cdn.pixabay.com/photo/2017/10/12/22/17/business-2846221_1280.jpg" alt="Product" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">E-Touch Pro 65"</h3>
+              
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="spec-badge bg-blue-100 text-blue-800">65"</span>
+                <span class="spec-badge bg-teal-100 text-teal-800">4K</span>
+                <span class="spec-badge bg-gray-100 text-gray-800">Android</span>
+                <span class="spec-badge bg-green-100 text-green-800">20-Touch</span>
+              </div>
+              
+              <ul class="space-y-2 mb-4 text-sm">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Perfect for 35 students</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Advanced collaboration</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Split-screen capability</span>
+                </li>
+              </ul>
+              
+              <div class="mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="text-gray-400 line-through text-sm">$2,999</span>
+                  <span class="text-3xl font-bold text-blue-600">$2,499</span>
+                </div>
+                <p class="text-sm text-teal-600">or $104/month</p>
+              </div>
+              
+              <button class="w-full btn-pink py-3" onclick="addToCart('E-Touch Pro 65', 2499)">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card-school bg-white rounded-xl overflow-hidden shadow-md" data-category="premium">
+            <div class="relative">
+              <span class="product-badge badge-blue">PREMIUM</span>
+              <span class="discount-badge">20% Off</span>
+              <img src="https://cdn.pixabay.com/photo/2017/03/28/12/10/chairs-2181947_1280.jpg" alt="Product" class="w-full h-56 object-cover">
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">E-Touch Elite 75"</h3>
+              
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="spec-badge bg-blue-100 text-blue-800">75"</span>
+                <span class="spec-badge bg-teal-100 text-teal-800">4K</span>
+                <span class="spec-badge bg-gray-100 text-gray-800">Android</span>
+                <span class="spec-badge bg-green-100 text-green-800">20-Touch</span>
+              </div>
+              
+              <ul class="space-y-2 mb-4 text-sm">
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Large classrooms</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>Premium anti-glare</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>AI teaching assistant</span>
+                </li>
+              </ul>
+              
+              <div class="mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="text-gray-400 line-through text-sm">$4,199</span>
+                  <span class="text-3xl font-bold text-blue-600">$3,499</span>
+                </div>
+                <p class="text-sm text-teal-600">or $146/month</p>
+              </div>
+              
+              <button class="w-full btn-pink py-3" onclick="addToCart('E-Touch Elite 75', 3499)">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gradient-to-b from-blue-50 to-white">
+      <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Trusted by Schools Nationwide</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-quote-left text-3xl text-pink-500 mr-3"></i>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">"Student engagement has increased by 40%. Best investment we've made!"</p>
+            <div class="flex items-center">
+              <img src="https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1869761_1280.jpg" alt="Sarah" class="w-12 h-12 rounded-full mr-3">
+              <div>
+                <h4 class="font-bold">Sarah Johnson</h4>
+                <p class="text-sm text-gray-500">Principal, Lincoln Elementary</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-quote-left text-3xl text-pink-500 mr-3"></i>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">"Exceptional training and support. Teachers were confident within a week."</p>
+            <div class="flex items-center">
+              <img src="https://cdn.pixabay.com/photo/2015/03/03/20/42/man-657869_1280.jpg" alt="Michael" class="w-12 h-12 rounded-full mr-3">
+              <div>
+                <h4 class="font-bold">Michael Chen</h4>
+                <p class="text-sm text-gray-500">Tech Director, Riverside High</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-white p-6 rounded-xl shadow-md">
+            <div class="flex items-center mb-4">
+              <i class="fas fa-quote-left text-3xl text-pink-500 mr-3"></i>
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+            </div>
+            <p class="text-gray-700 mb-4">"Volume discount made it affordable to equip 25 classrooms. Highly recommend!"</p>
+            <div class="flex items-center">
+              <img src="https://cdn.pixabay.com/photo/2019/02/11/20/20/woman-3990680_1280.jpg" alt="Emily" class="w-12 h-12 rounded-full mr-3">
+              <div>
+                <h4 class="font-bold">Emily Rodriguez</h4>
+                <p class="text-sm text-gray-500">Superintendent, Valley District</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div>
+            <div class="text-4xl font-bold text-blue-600 mb-2">500+</div>
+            <div class="text-gray-600">Schools</div>
+          </div>
+          <div>
+            <div class="text-4xl font-bold text-green-600 mb-2">95%</div>
+            <div class="text-gray-600">Satisfaction</div>
+          </div>
+          <div>
+            <div class="text-4xl font-bold text-teal-600 mb-2">10,000+</div>
+            <div class="text-gray-600">Students</div>
+          </div>
+          <div>
+            <div class="text-4xl font-bold text-pink-600 mb-2">4.9/5</div>
+            <div class="text-gray-600">Rating</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-r from-pink-500 to-pink-600 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-4">Ready to Modernize Your Classrooms?</h2>
+        <p class="text-xl mb-8 max-w-2xl mx-auto">Join 500+ schools transforming education</p>
+        
+        <div class="flex flex-col md:flex-row justify-center gap-4">
+          <a href="#products" class="bg-white text-pink-600 font-bold text-lg px-10 py-4 rounded-lg hover:bg-gray-100 transition">
+            Shop Now
+          </a>
+          <button class="border-2 border-white font-bold text-lg px-10 py-4 rounded-lg hover:bg-pink-600 transition">
+            Request Quote
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Esmartboard</h3>
+          <p class="mb-4">Empowering classrooms since 2015</p>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="hover:text-white">Home</a></li>
+            <li><a href="school.html" class="hover:text-white">School</a></li>
+            <li><a href="corporate.html" class="hover:text-white">Corporate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Support</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:text-white">5-Year Warranty</a></li>
+            <li><a href="#" class="hover:text-white">Technical Support</a></li>
+            <li><a href="#" class="hover:text-white">Training</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-white text-lg font-semibold mb-4">Contact</h3>
+          <p class="mb-2">1-800-ESMART-1</p>
+          <p>schools@esmartboard.com</p>
+        </div>
+      </div>
+      <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+        <p>&copy; 2025 Esmartboard. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="./src/js/app.js"></script>
+  <script>
+    // FAQ Toggle (if you add FAQ section later)
+    
+    // Product Filter
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        document.querySelectorAll('.product-card-school').forEach(card => {
+          if (filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
