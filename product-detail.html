@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Product Details - Esmartboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./public/css/style.css">
+  <link rel="stylesheet" href="./public/css/product-detail.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Header (same as other pages) -->
+  <header class="bg-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <a href="index.html"><img src="./public/css/images/esmart no bg.png" alt="Logo" class="w-44"></a>
+        <nav class="hidden md:flex items-center space-x-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="school.html" class="nav-link">School</a>
+          <a href="corporate.html" class="nav-link">Corporate</a>
+          <a href="javascript:void(0)" id="cartButton" class="nav-link relative">
+            <span>Cart</span>
+            <span id="cartCount" class="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+          <a href="javascript:void(0)" class="nav-link"><i class="fas fa-user"></i> Login</a>
+        </nav>
+        <button id="mobile-menu-button" class="md:hidden text-gray-800"><i class="fas fa-bars text-2xl"></i></button>
+      </div>
+      <div id="mobile-menu" class="mobile-menu py-4 pb-6">
+        <nav class="flex flex-col space-y-3">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="school.html" class="nav-link">School</a>
+          <a href="corporate.html" class="nav-link">Corporate</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Cart Sidebar (same as other pages) -->
+  <div id="cartSidebar" class="fixed top-0 right-0 h-full w-full md:w-96 bg-white z-50 shadow-lg slide-in overflow-y-auto">
+    <div class="p-6">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-bold">Your Cart</h2>
+        <button id="closeCart" class="text-gray-500"><i class="fas fa-times text-xl"></i></button>
+      </div>
+      <div id="cartItems" class="space-y-4"><div class="text-center py-8 text-gray-500">Your cart is empty</div></div>
+      <div class="border-t mt-6 pt-4">
+        <div class="flex justify-between font-semibold text-lg mb-4">
+          <span>Subtotal:</span><span id="cartSubtotal">$0.00</span>
+        </div>
+        <button class="w-full btn-primary mb-2">Checkout</button>
+        <button id="clearCart" class="w-full btn-secondary">Clear</button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- Breadcrumb -->
+    <section class="bg-white py-4 border-b">
+      <div class="container mx-auto px-4">
+        <nav class="flex items-center text-sm text-gray-600">
+          <a href="index.html" class="hover:text-primary-600">Home</a>
+          <i class="fas fa-chevron-right mx-2 text-xs"></i>
+          <a href="school.html" id="breadcrumb-category" class="hover:text-primary-600">School</a>
+          <i class="fas fa-chevron-right mx-2 text-xs"></i>
+          <span id="breadcrumb-product" class="text-gray-900 font-semibold">Product</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="py-12 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Images -->
+          <div>
+            <div class="relative bg-gray-100 rounded-xl overflow-hidden mb-4">
+              <img id="mainImage" src="./public/css/images/screen6.jpg" alt="Product" class="w-full h-96 md:h-[500px] object-cover">
+              <span id="productBadge" class="absolute top-4 left-4 bg-pink-500 text-white px-4 py-2 rounded-full text-sm font-bold">BEST SELLER</span>
+            </div>
+            <div class="grid grid-cols-4 gap-3">
+              <img src="./public/css/images/screen6.jpg" class="thumbnail active cursor-pointer rounded-lg border-2 border-blue-600 h-20 object-cover" onclick="changeImage(this, 0)">
+              <img src="./public/css/images/screen3.jpg" class="thumbnail cursor-pointer rounded-lg border-2 border-transparent hover:border-blue-600 h-20 object-cover" onclick="changeImage(this, 1)">
+              <img src="./public/css/images/screen.jpg" class="thumbnail cursor-pointer rounded-lg border-2 border-transparent hover:border-blue-600 h-20 object-cover" onclick="changeImage(this, 2)">
+              <img src="./public/css/images/SMART-SBID-6286S-V3-PW.jpg" class="thumbnail cursor-pointer rounded-lg border-2 border-transparent hover:border-blue-600 h-20 object-cover" onclick="changeImage(this, 3)">
+            </div>
+          </div>
+
+          <!-- Info -->
+          <div>
+            <h1 id="productName" class="text-4xl font-bold mb-4">E-Touch Pro 65"</h1>
+            <div class="flex items-center gap-4 mb-6">
+              <div class="flex text-yellow-400">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+              </div>
+              <span class="text-gray-600">4.8 (127 reviews)</span>
+              <span class="text-green-600 font-semibold"><i class="fas fa-check-circle"></i> In Stock</span>
+            </div>
+            
+            <p class="text-lg text-gray-700 mb-6" id="productDescription">Perfect for classrooms with 20-point touch, built-in teaching software, and wireless screen mirroring.</p>
+            
+            <div class="flex flex-wrap gap-2 mb-8">
+              <span class="spec-badge bg-blue-100 text-blue-800">65"</span>
+              <span class="spec-badge bg-teal-100 text-teal-800">4K</span>
+              <span class="spec-badge bg-gray-100 text-gray-800">Android 11</span>
+              <span class="spec-badge bg-green-100 text-green-800">20-Touch</span>
+            </div>
+            
+            <div class="bg-gray-50 p-6 rounded-xl mb-8">
+              <div class="flex items-center gap-4 mb-3">
+                <span class="text-2xl text-gray-400 line-through">$2,999</span>
+                <span class="text-4xl font-bold text-blue-600" id="productPrice">$2,499</span>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="bg-green-100 text-green-800 px-3 py-1 rounded-lg font-semibold">Save $500 (17%)</span>
+                <span class="text-teal-600 font-semibold">or $104/month</span>
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <label class="block font-semibold mb-3">Quantity:</label>
+              <div class="flex items-center border-2 rounded-lg w-fit">
+                <button class="px-4 py-2 hover:bg-gray-100" onclick="updateProductQuantity(-1)"><i class="fas fa-minus"></i></button>
+                <span class="px-6 py-2 font-bold border-x-2" id="productQuantity">1</span>
+                <button class="px-4 py-2 hover:bg-gray-100" onclick="updateProductQuantity(1)"><i class="fas fa-plus"></i></button>
+              </div>
+            </div>
+            
+            <div class="flex gap-4 mb-8">
+              <button class="btn-primary flex-1 py-4 text-lg" onclick="addProductToCart()">
+                <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+              </button>
+              <button class="btn-secondary px-6" onclick="toggleWishlist(this)"><i class="far fa-heart"></i></button>
+            </div>
+            
+            <div class="space-y-4 border-t pt-6">
+              <div class="flex gap-3"><i class="fas fa-shipping-fast text-2xl text-green-600"></i><div><p class="font-semibold">Free Installation</p><p class="text-sm text-gray-600">Professional setup included</p></div></div>
+              <div class="flex gap-3"><i class="fas fa-shield-alt text-2xl text-blue-600"></i><div><p class="font-semibold">5-Year Warranty</p><p class="text-sm text-gray-600">Full coverage</p></div></div>
+              <div class="flex gap-3"><i class="fas fa-headset text-2xl text-teal-600"></i><div><p class="font-semibold">24/7 Support</p><p class="text-sm text-gray-600">Always here</p></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="py-12 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="border-b-2 mb-8">
+          <button class="tab-btn active" onclick="switchTab('specs')">Specifications</button>
+          <button class="tab-btn" onclick="switchTab('features')">Features</button>
+          <button class="tab-btn" onclick="switchTab('included')">What's Included</button>
+          <button class="tab-btn" onclick="switchTab('reviews')">Reviews</button>
+        </div>
+        
+        <div id="specs" class="tab-content active">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-600">
+              <p class="text-xs text-gray-500 mb-1">Display</p>
+              <p class="font-bold">65" 4K</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-600">
+              <p class="text-xs text-gray-500 mb-1">Touch</p>
+              <p class="font-bold">20-point</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-600">
+              <p class="text-xs text-gray-500 mb-1">OS</p>
+              <p class="font-bold">Android 11</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg border-l-4 border-blue-600">
+              <p class="text-xs text-gray-500 mb-1">RAM</p>
+              <p class="font-bold">8GB</p>
+            </div>
+          </div>
+        </div>
+        
+        <div id="features" class="tab-content">
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-xl flex gap-4">
+              <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-graduation-cap text-blue-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold mb-2">Educational Software</h3>
+                <p class="text-gray-600 text-sm">Pre-loaded teaching tools</p>
+              </div>
+            </div>
+            <div class="bg-white p-6 rounded-xl flex gap-4">
+              <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-wifi text-green-600 text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-bold mb-2">Wireless Mirroring</h3>
+                <p class="text-gray-600 text-sm">Connect any device</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="included" class="tab-content">
+          <div class="bg-white p-8 rounded-xl">
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i><span>Display Unit</span></div>
+              <div class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i><span>2x Stylus Pens</span></div>
+              <div class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i><span>Wall Mount</span></div>
+              <div class="flex items-center gap-2"><i class="fas fa-check-circle text-green-500"></i><span>Installation</span></div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="reviews" class="tab-content">
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="bg-white p-6 rounded-xl">
+              <div class="flex gap-3 mb-4">
+                <img src="https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1869761_1280.jpg" class="w-12 h-12 rounded-full">
+                <div>
+                  <p class="font-bold">Sarah Mitchell</p>
+                  <div class="flex text-yellow-400 text-sm"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                </div>
+              </div>
+              <p class="text-gray-700">"Transformed my classroom!"</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-gray-300 py-12">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2026 Esmartboard. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="./src/js/app.js"></script>
+  <script src="./src/js/product-detail.js"></script>
+</body>
+</html>

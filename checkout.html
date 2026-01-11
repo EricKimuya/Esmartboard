@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout - Esmartboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./public/css/style.css">
+  <link rel="stylesheet" href="./public/css/checkout.css">
+</head>
+<body class="bg-gray-50">
+  <!-- Header -->
+  <header class="bg-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <a href="index.html"><img src="./public/css/images/esmart no bg.png" alt="Logo" class="w-44"></a>
+        <div class="flex items-center gap-4">
+          <span class="text-sm text-gray-600">Secure Checkout</span>
+          <i class="fas fa-lock text-green-600"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="py-8">
+    <div class="container mx-auto px-4">
+      <!-- Progress Steps -->
+      <div class="mb-8">
+        <div class="flex items-center justify-center">
+          <div class="flex items-center">
+            <div class="step-circle active" id="step1-circle">
+              <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="step-line" id="line1"></div>
+            <div class="step-circle" id="step2-circle">
+              <i class="fas fa-user"></i>
+            </div>
+            <div class="step-line" id="line2"></div>
+            <div class="step-circle" id="step3-circle">
+              <i class="fas fa-credit-card"></i>
+            </div>
+            <div class="step-line" id="line3"></div>
+            <div class="step-circle" id="step4-circle">
+              <i class="fas fa-check"></i>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between mt-2 text-sm font-semibold max-w-2xl mx-auto">
+          <span class="text-blue-600">Cart</span>
+          <span class="text-gray-400" id="step2-label">Information</span>
+          <span class="text-gray-400" id="step3-label">Payment</span>
+          <span class="text-gray-400" id="step4-label">Complete</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Main Content -->
+        <div class="lg:col-span-2">
+          
+          <!-- Step 1: Cart Review -->
+          <div id="step1" class="checkout-step active">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+              <h2 class="text-2xl font-bold mb-6">Review Your Order</h2>
+              
+              <div id="checkoutCartItems" class="space-y-4">
+                <!-- Cart items will be inserted here -->
+              </div>
+              
+              <div class="mt-6 pt-6 border-t">
+                <div class="flex items-center gap-4 mb-4">
+                  <input type="text" id="couponCode" placeholder="Coupon Code" class="flex-1 border rounded-lg px-4 py-3">
+                  <button onclick="applyCoupon()" class="btn-secondary px-6 py-3">Apply</button>
+                </div>
+                <div id="couponMessage" class="text-sm mb-4"></div>
+              </div>
+              
+              <div class="flex justify-between">
+                <a href="school.html" class="btn-secondary">
+                  <i class="fas fa-arrow-left mr-2"></i>Continue Shopping
+                </a>
+                <button onclick="nextStep(2)" class="btn-primary">
+                  Proceed to Information <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Customer Information -->
+          <div id="step2" class="checkout-step">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+              <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
+              
+              <form id="contactForm" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block font-semibold mb-2">First Name *</label>
+                    <input type="text" id="firstName" required class="w-full border rounded-lg px-4 py-3" placeholder="John">
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-2">Last Name *</label>
+                    <input type="text" id="lastName" required class="w-full border rounded-lg px-4 py-3" placeholder="Doe">
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block font-semibold mb-2">Email Address *</label>
+                  <input type="email" id="email" required class="w-full border rounded-lg px-4 py-3" placeholder="john@example.com">
+                </div>
+                
+                <div>
+                  <label class="block font-semibold mb-2">Phone Number *</label>
+                  <input type="tel" id="phone" required class="w-full border rounded-lg px-4 py-3" placeholder="+254 700 000 000">
+                </div>
+                
+                <div>
+                  <label class="block font-semibold mb-2">Organization/School Name</label>
+                  <input type="text" id="organization" class="w-full border rounded-lg px-4 py-3" placeholder="Lincoln High School">
+                </div>
+              </form>
+              
+              <h2 class="text-2xl font-bold mb-6 mt-8">Delivery Information</h2>
+              
+              <form id="deliveryForm" class="space-y-4">
+                <div>
+                  <label class="block font-semibold mb-2">Street Address *</label>
+                  <input type="text" id="address" required class="w-full border rounded-lg px-4 py-3" placeholder="123 Main Street">
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label class="block font-semibold mb-2">City *</label>
+                    <input type="text" id="city" required class="w-full border rounded-lg px-4 py-3" placeholder="Nairobi">
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-2">County *</label>
+                    <input type="text" id="county" required class="w-full border rounded-lg px-4 py-3" placeholder="Nairobi County">
+                  </div>
+                </div>
+                
+                <div>
+                  <label class="block font-semibold mb-2">Postal Code</label>
+                  <input type="text" id="postalCode" class="w-full border rounded-lg px-4 py-3" placeholder="00100">
+                </div>
+                
+                <div>
+                  <label class="block font-semibold mb-2">Delivery Notes (Optional)</label>
+                  <textarea id="deliveryNotes" rows="3" class="w-full border rounded-lg px-4 py-3" placeholder="Special instructions for delivery..."></textarea>
+                </div>
+              </form>
+              
+              <div class="flex justify-between mt-6">
+                <button onclick="prevStep(1)" class="btn-secondary">
+                  <i class="fas fa-arrow-left mr-2"></i>Back to Cart
+                </button>
+                <button onclick="validateAndProceed()" class="btn-primary">
+                  Continue to Payment <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Payment -->
+          <div id="step3" class="checkout-step">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+              <h2 class="text-2xl font-bold mb-6">Payment Method</h2>
+              
+              <div class="space-y-4 mb-6">
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="mpesa" checked>
+                  <div class="payment-card">
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-mobile-alt text-2xl text-green-600"></i>
+                      <div>
+                        <p class="font-bold">M-Pesa</p>
+                        <p class="text-sm text-gray-600">Pay with M-Pesa mobile money</p>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+                
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="card">
+                  <div class="payment-card">
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-credit-card text-2xl text-blue-600"></i>
+                      <div>
+                        <p class="font-bold">Credit/Debit Card</p>
+                        <p class="text-sm text-gray-600">Visa, Mastercard accepted</p>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+                
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="bank">
+                  <div class="payment-card">
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-university text-2xl text-teal-600"></i>
+                      <div>
+                        <p class="font-bold">Bank Transfer</p>
+                        <p class="text-sm text-gray-600">Direct bank transfer</p>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+                
+                <label class="payment-option">
+                  <input type="radio" name="paymentMethod" value="invoice">
+                  <div class="payment-card">
+                    <div class="flex items-center gap-3">
+                      <i class="fas fa-file-invoice text-2xl text-gray-600"></i>
+                      <div>
+                        <p class="font-bold">Request Invoice</p>
+                        <p class="text-sm text-gray-600">For institutional purchases</p>
+                      </div>
+                    </div>
+                  </div>
+                </label>
+              </div>
+              
+              <!-- Payment Details Forms (hidden by default) -->
+              <div id="mpesaForm" class="payment-form">
+                <label class="block font-semibold mb-2">M-Pesa Phone Number</label>
+                <input type="tel" id="mpesaPhone" class="w-full border rounded-lg px-4 py-3 mb-4" placeholder="254700000000">
+                <p class="text-sm text-gray-600">You will receive an M-Pesa prompt on your phone</p>
+              </div>
+              
+              <div id="cardForm" class="payment-form hidden">
+                <div class="space-y-4">
+                  <div>
+                    <label class="block font-semibold mb-2">Card Number</label>
+                    <input type="text" id="cardNumber" class="w-full border rounded-lg px-4 py-3" placeholder="1234 5678 9012 3456">
+                  </div>
+                  <div class="grid grid-cols-2 gap-4">
+                    <div>
+                      <label class="block font-semibold mb-2">Expiry Date</label>
+                      <input type="text" id="cardExpiry" class="w-full border rounded-lg px-4 py-3" placeholder="MM/YY">
+                    </div>
+                    <div>
+                      <label class="block font-semibold mb-2">CVV</label>
+                      <input type="text" id="cardCVV" class="w-full border rounded-lg px-4 py-3" placeholder="123">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div id="bankForm" class="payment-form hidden">
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                  <h3 class="font-bold mb-2">Bank Details:</h3>
+                  <p class="text-sm mb-1"><strong>Bank:</strong> Equity Bank</p>
+                  <p class="text-sm mb-1"><strong>Account Name:</strong> Esmartboard Africa Ltd</p>
+                  <p class="text-sm mb-1"><strong>Account Number:</strong> 0123456789</p>
+                  <p class="text-sm mb-1"><strong>Branch:</strong> Nairobi CBD</p>
+                  <p class="text-sm text-gray-600 mt-3">Please use your order number as reference</p>
+                </div>
+              </div>
+              
+              <div id="invoiceForm" class="payment-form hidden">
+                <div class="bg-gray-50 border rounded-lg p-4">
+                  <p class="text-sm text-gray-700 mb-3">We will send you a detailed invoice via email. Payment terms: Net 30 days.</p>
+                  <label class="block font-semibold mb-2">Purchase Order Number (Optional)</label>
+                  <input type="text" id="poNumber" class="w-full border rounded-lg px-4 py-3" placeholder="PO-2024-001">
+                </div>
+              </div>
+              
+              <div class="flex justify-between mt-6">
+                <button onclick="prevStep(2)" class="btn-secondary">
+                  <i class="fas fa-arrow-left mr-2"></i>Back
+                </button>
+                <button onclick="processPayment()" class="btn-primary">
+                  Place Order <i class="fas fa-lock ml-2"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4: Confirmation -->
+          <div id="step4" class="checkout-step">
+            <div class="bg-white rounded-xl shadow-md p-8 text-center">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-check text-4xl text-green-600"></i>
+              </div>
+              <h2 class="text-3xl font-bold mb-4">Order Confirmed!</h2>
+              <p class="text-lg text-gray-600 mb-2">Thank you for your order</p>
+              <p class="text-2xl font-bold text-blue-600 mb-6" id="orderNumber">#ORDER-12345</p>
+              
+              <div class="bg-gray-50 rounded-lg p-6 mb-6 text-left">
+                <h3 class="font-bold mb-4">What's Next?</h3>
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3">
+                    <i class="fas fa-envelope text-blue-600 mt-1"></i>
+                    <div>
+                      <p class="font-semibold">Order Confirmation</p>
+                      <p class="text-sm text-gray-600">You'll receive an email confirmation shortly</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <i class="fas fa-phone text-green-600 mt-1"></i>
+                    <div>
+                      <p class="font-semibold">Installation Scheduling</p>
+                      <p class="text-sm text-gray-600">Our team will contact you within 24 hours</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3">
+                    <i class="fas fa-truck text-teal-600 mt-1"></i>
+                    <div>
+                      <p class="font-semibold">Delivery & Setup</p>
+                      <p class="text-sm text-gray-600">Professional installation included</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <a href="index.html" class="btn-primary">
+                  <i class="fas fa-home mr-2"></i>Back to Home
+                </a>
+                <button onclick="window.print()" class="btn-secondary">
+                  <i class="fas fa-print mr-2"></i>Print Receipt
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+            <h3 class="text-xl font-bold mb-4">Order Summary</h3>
+            
+            <div class="space-y-3 mb-6" id="summaryItems">
+              <!-- Summary items will be inserted here -->
+            </div>
+            
+            <div class="border-t pt-4 space-y-2">
+              <div class="flex justify-between text-sm">
+                <span>Subtotal</span>
+                <span id="summarySubtotal">$0.00</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>Discount</span>
+                <span class="text-green-600" id="summaryDiscount">-$0.00</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>Delivery</span>
+                <span class="text-green-600" id="summaryDelivery">FREE</span>
+              </div>
+              <div class="flex justify-between text-sm">
+                <span>Installation</span>
+                <span class="text-green-600">FREE</span>
+              </div>
+              <div class="border-t pt-3 flex justify-between font-bold text-lg">
+                <span>Total</span>
+                <span class="text-blue-600" id="summaryTotal">$0.00</span>
+              </div>
+            </div>
+            
+            <div class="mt-6 space-y-3">
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fas fa-shield-alt text-green-600"></i>
+                <span>Secure Checkout</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fas fa-truck text-blue-600"></i>
+                <span>Free Installation</span>
+              </div>
+              <div class="flex items-center gap-2 text-sm text-gray-600">
+                <i class="fas fa-certificate text-teal-600"></i>
+                <span>5-Year Warranty</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./src/js/app.js"></script>
+  <script src="./src/js/checkout.js"></script>
+</body>
+</html>

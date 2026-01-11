@@ -1,0 +1,152 @@
+/* Checkout Page Styles */
+
+/* Progress Steps */
+.step-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  transition: all 0.3s;
+  position: relative;
+  z-index: 2;
+}
+
+.step-circle.active {
+  background: #0284c7;
+  color: white;
+  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.2);
+}
+
+.step-line {
+  width: 80px;
+  height: 3px;
+  background: #e5e7eb;
+  transition: all 0.3s;
+}
+
+.step-line.active {
+  background: #0284c7;
+}
+
+/* Checkout Steps */
+.checkout-step {
+  display: none;
+  animation: fadeInUp 0.4s ease;
+}
+
+.checkout-step.active {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Payment Options */
+.payment-option {
+  cursor: pointer;
+  display: block;
+}
+
+.payment-option input[type="radio"] {
+  display: none;
+}
+
+.payment-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  transition: all 0.3s;
+}
+
+.payment-option:hover .payment-card {
+  border-color: #0284c7;
+  background: #f0f9ff;
+}
+
+.payment-option input[type="radio"]:checked + .payment-card {
+  border-color: #0284c7;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+/* Form Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea {
+  transition: all 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+/* Payment Forms */
+.payment-form {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: #f9fafb;
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+}
+
+/* Order Summary Sticky */
+@media (min-width: 1024px) {
+  .sticky {
+    position: sticky;
+    top: 6rem;
+  }
+}
+
+/* Loading Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Print Styles */
+@media print {
+  header, .btn-primary, .btn-secondary {
+    display: none;
+  }
+  
+  .bg-white {
+    box-shadow: none;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .step-line {
+    width: 40px;
+  }
+  
+  .step-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
