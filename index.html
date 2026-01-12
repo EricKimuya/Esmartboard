@@ -27,10 +27,24 @@
             <span>Cart</span>
             <span id="cartCount" class="absolute -top-1 -right-1 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
           </a>
-          <a href="javascript:void(0)" class="nav-link">
+          <a href="login.html" class="nav-link" id="userMenuLink">
             <i class="fas fa-user"></i>
             <span class="ml-1">Login</span>
           </a>
+          ```
+
+          <!-- 🎨 HOW IT WORKS:
+
+          #### **1. User Registration Flow:**
+          ```
+          User fills form → Validates password → Checks email → 
+          Saves to localStorage → Auto-login → Redirect to homepage
+          ```
+
+          #### **2. User Login Flow:**
+          ```
+          User enters credentials → Checks against stored users → 
+          Creates session → Updates header → Redirect to homepage -->
         </nav>
         
         <!-- Mobile menu button -->
@@ -153,7 +167,7 @@
     </section>
     
     <!-- Featured Products Section -->
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 featured-products-bg">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-4">Featured Products</h2>
         <p class="text-center text-gray-600 mb-12 max-w-3xl mx-auto">Discover our most popular interactive smart boards, trusted by leading schools and businesses worldwide.</p>
@@ -164,7 +178,7 @@
             <div class="swiper-slide">
               <div class="featured-product-card bg-white rounded-lg overflow-hidden shadow-md">
                 <div class="relative overflow-hidden">
-                  <img src="https://cdn.pixabay.com/photo/2017/08/04/09/38/monitor-2579683_1280.jpg" alt="E-Touch Pro 65" class="w-full h-64 object-cover">
+                  <img src="./public/css/images/screen5.jpg" alt="E-Touch Pro 65" class="w-full h-64 object-cover">
                   <div class="product-image-overlay">
                     <button class="bg-white text-primary-600 font-semibold px-6 py-3 rounded-lg hover:bg-primary-600 hover:text-white transition">
                       Learn More
@@ -186,7 +200,7 @@
             <div class="swiper-slide">
               <div class="featured-product-card bg-white rounded-lg overflow-hidden shadow-md">
                 <div class="relative overflow-hidden">
-                  <img src="https://cdn.pixabay.com/photo/2017/10/12/22/17/business-2846221_1280.jpg" alt="E-Touch Executive 75" class="w-full h-64 object-cover">
+                  <img src="./public/css/images/screen6.jpg" alt="E-Touch Executive 75" class="w-full h-64 object-cover">
                   <div class="product-image-overlay">
                     <button class="bg-white text-primary-600 font-semibold px-6 py-3 rounded-lg hover:bg-primary-600 hover:text-white transition">
                       Learn More
@@ -208,7 +222,7 @@
             <div class="swiper-slide">
               <div class="featured-product-card bg-white rounded-lg overflow-hidden shadow-md">
                 <div class="relative overflow-hidden">
-                  <img src="https://cdn.pixabay.com/photo/2017/03/28/12/10/chairs-2181947_1280.jpg" alt="E-Touch Classroom 55" class="w-full h-64 object-cover">
+                  <img src="./public/css/images/screen7.jpg" alt="E-Touch Classroom 55" class="w-full h-64 object-cover">
                   <div class="product-image-overlay">
                     <button class="bg-white text-primary-600 font-semibold px-6 py-3 rounded-lg hover:bg-primary-600 hover:text-white transition">
                       Learn More
@@ -230,7 +244,7 @@
             <div class="swiper-slide">
               <div class="featured-product-card bg-white rounded-lg overflow-hidden shadow-md">
                 <div class="relative overflow-hidden">
-                  <img src="https://cdn.pixabay.com/photo/2015/01/09/11/09/meeting-594091_1280.jpg" alt="E-Touch Mobile 43" class="w-full h-64 object-cover">
+                  <img src="./public/css/images/screen3.jpg" alt="E-Touch Mobile 43" class="w-full h-64 object-cover">
                   <div class="product-image-overlay">
                     <button class="bg-white text-primary-600 font-semibold px-6 py-3 rounded-lg hover:bg-primary-600 hover:text-white transition">
                       Learn More
@@ -255,7 +269,7 @@
     </section>
 
     <!-- About Us Section - Insert this AFTER the Featured Products Section in index.html -->
-<section class="py-20 bg-white">
+<section class="py-20 about-section-bg">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <!-- Left: Image/Video -->
@@ -275,7 +289,7 @@
           About <span class="text-primary-600">Esmartboard</span>
         </h2>
         <p class="text-lg text-gray-700 mb-6">
-          Since 2015, Esmartboard has been at the forefront of educational and business technology in East Africa. We're passionate about transforming how people learn, collaborate, and communicate through innovative interactive display solutions.
+          Esmartboard has been at the forefront of educational and business technology in East Africa. We're passionate about transforming how people learn, collaborate, and communicate through innovative interactive display solutions.
         </p>
         <p class="text-gray-600 mb-8">
           Our mission is simple: provide world-class interactive smart boards that empower teachers, inspire students, and drive business success. With over 500 schools and 2,000 businesses trusting our solutions, we've become the leading provider of interactive displays in Kenya and beyond.
@@ -430,7 +444,7 @@
             </div>
             <div>
               <h4 class="font-bold mb-1">Visit Us</h4>
-              <p class="opacity-90">123 Business Park, Nairobi, Kenya</p>
+              <p class="opacity-90">Nairobi, Kenya</p>
             </div>
           </div>
           
@@ -616,7 +630,7 @@ function handleContactForm(event) {
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div>
           <h3 class="text-white text-lg font-semibold mb-4">Esmartboard</h3>
-          <p class="mb-4">Providing premium interactive smart boards for education and business since 2015.</p>
+          <p class="mb-4">Providing premium interactive smart boards for education and business.</p>
           <div class="flex space-x-4">
             <a href="javascript:void(0)" class="text-gray-400 hover:text-white transition duration-150">
               <i class="fab fa-facebook-f"></i>
@@ -659,30 +673,27 @@ function handleContactForm(event) {
           <h3 class="text-white text-lg font-semibold mb-4">Contact Us</h3>
           <ul class="space-y-2">
             <li class="flex items-start">
-              <i class="fas fa-map-marker-alt mt-1 mr-2"></i>
-              <span>123 Business Park, Tech Avenue, Suite 100</span>
-            </li>
-            <li class="flex items-start">
               <i class="fas fa-phone mt-1 mr-2"></i>
-              <span>+1 (555) 123-4567</span>
+              <span>+(254) 711767340</span>
+              <span>+(254) 738767340</span>
             </li>
             <li class="flex items-start">
               <i class="fas fa-envelope mt-1 mr-2"></i>
-              <span>info@esmartboard.com</span>
+              <span>sales@esmartboard.africa</span>
             </li>
           </ul>
           <div class="mt-4">
             <div class="flex space-x-2">
-              <img src="https://cdn.pixabay.com/photo/2021/02/08/16/03/mastercard-5995767_1280.png" alt="MasterCard" class="h-8">
-              <img src="https://cdn.pixabay.com/photo/2021/02/08/16/03/visa-5995769_1280.png" alt="Visa" class="h-8">
-              <img src="https://cdn.pixabay.com/photo/2015/05/26/09/37/paypal-784404_1280.png" alt="PayPal" class="h-8">
+              <img src="./public/css/images/mastercard.png" alt="MasterCard" class="h-8">
+              <img src="./public/css/images/visa.png" alt="Visa" class="h-8">
+              <img src="./public/css/images/paypal.png" alt="PayPal" class="h-8">
             </div>
           </div>
         </div>
       </div>
       
       <div class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p>&copy; 2025 Esmartboard. All rights reserved.</p>
+        <p>&copy; 2026 Esmartboard. All rights reserved.</p>
         <div class="mt-4 md:mt-0">
           <a href="javascript:void(0)" class="text-gray-400 hover:text-white mr-4">Privacy Policy</a>
           <a href="javascript:void(0)" class="text-gray-400 hover:text-white mr-4">Terms of Service</a>

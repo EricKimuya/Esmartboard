@@ -47,10 +47,24 @@
             <span>Cart</span>
             <span class="ml-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
           </a>
-          <a href="javascript:void(0)" class="nav-link">
+          <a href="login.html" class="nav-link" id="userMenuLink">
             <i class="fas fa-user"></i>
             <span class="ml-1">Login</span>
           </a>
+          ```
+
+                   <!-- 🎨 HOW IT WORKS:
+
+          #### **1. User Registration Flow:**
+          ```
+          User fills form → Validates password → Checks email → 
+          Saves to localStorage → Auto-login → Redirect to homepage
+          ```
+
+          #### **2. User Login Flow:**
+          ```
+          User enters credentials → Checks against stored users → 
+          Creates session → Updates header → Redirect to homepage -->
         </nav>
       </div>
     </div>
