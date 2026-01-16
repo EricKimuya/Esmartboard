@@ -43,13 +43,16 @@
           <a href="index.html" class="nav-link">Home</a>
           <a href="school.html" class="nav-link active">School</a>
           <a href="corporate.html" class="nav-link">Corporate</a>
-          <a href="javascript:void(0)" class="nav-link flex items-center">
+          <a href="javascript:void(0)" id="mobileCartButton" class="nav-link flex items-center">
+            <i class="fas fa-shopping-cart mr-2"></i>
             <span>Cart</span>
-            <span class="ml-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+            <span id="mobileCartCount" class="ml-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
           </a>
-          <a href="login.html" class="nav-link" id="userMenuLink">
-            <i class="fas fa-user"></i>
-            <span class="ml-1">Login</span>
+          
+          <!-- Login Link - Make it actually work -->
+          <a href="login.html" id="mobileLoginLink" class="nav-link flex items-center">
+            <i class="fas fa-user mr-2"></i>
+            <span>Login</span>
           </a>
           ```
 
@@ -515,6 +518,81 @@
   </footer>
 
   <script src="./src/js/app.js"></script>
+  <script>
+// Make mobile cart button work
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileCartButton = document.getElementById('mobileCartButton');
+  if (mobileCartButton) {
+    mobileCartButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // Open cart sidebar
+      const cartSidebar = document.getElementById('cartSidebar');
+      if (cartSidebar) {
+        cartSidebar.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      // Close mobile menu
+      const mobileMenu = document.getElementById('mobile-menu');
+      if (mobileMenu) {
+        mobileMenu.classList.remove('show');
+      }
+    });
+  }
+  
+  // Update mobile cart count
+  function updateMobileCartCount() {
+    const cart = JSON.parse(localStorage.getItem('esmartboardCart') || '[]');
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    const mobileCartCount = document.getElementById('mobileCartCount');
+    if (mobileCartCount) {
+      mobileCartCount.textContent = totalItems;
+    }
+  }
+  
+  // Update on page load
+  updateMobileCartCount();
+  
+  // Update when cart changes
+  window.addEventListener('storage', updateMobileCartCount);
+});
+</script>
+
+<!-- 
+  ADDITIONAL CSS FIX - Add to your style.css
+-->
+<style>
+/* Fix mobile menu z-index and positioning */
+.mobile-menu {
+  position: relative;
+  z-index: 100;
+}
+
+/* Ensure mobile menu items are clickable */
+.mobile-menu .nav-link {
+  position: relative;
+  z-index: 101;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+
+/* Better mobile touch targets */
+@media (max-width: 767px) {
+  .mobile-menu .nav-link {
+    min-height: 48px;
+    padding: 0.75rem;
+  }
+  
+  /* Prevent double-tap zoom on buttons */
+  .mobile-menu a,
+  .mobile-menu button {
+    touch-action: manipulation;
+  }
+}
+</style>
   
 </body>
 </html>
