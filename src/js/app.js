@@ -83,6 +83,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
   
+
+
   // ========================================
   // FEATURED PRODUCTS CAROUSEL
   // ========================================
@@ -109,6 +111,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+
 
 // ========================================
 // MOBILE MENU TOGGLE
