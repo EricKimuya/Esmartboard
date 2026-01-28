@@ -31,20 +31,6 @@
             <i class="fas fa-user"></i>
             <span class="ml-1">Login</span>
           </a>
-          
-
-          <!-- 🎨 HOW IT WORKS:
-
-          #### **1. User Registration Flow:**
-          ```
-          User fills form → Validates password → Checks email → 
-          Saves to localStorage → Auto-login → Redirect to homepage
-          ```
-
-          #### **2. User Login Flow:**
-          ```
-          User enters credentials → Checks against stored users → 
-          Creates session → Updates header → Redirect to homepage -->
         </nav>
         
         <!-- Mobile menu button -->
@@ -61,17 +47,15 @@
           <a href="index.html" class="nav-link active">Home</a>
           <a href="school.html" class="nav-link">School</a>
           <a href="corporate.html" class="nav-link">Corporate</a>
-              <a href="javascript:void(0)" id="mobileCartButton" class="nav-link flex items-center">
-              <i class="fas fa-shopping-cart mr-2"></i>
-              <span>Cart</span>
-              <span id="mobileCartCount" class="ml-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
-            </a>
-            
-            <!-- Login Link - Make it actually work -->
-            <a href="login.html" id="mobileLoginLink" class="nav-link flex items-center">
-              <i class="fas fa-user mr-2"></i>
-              <span>Login</span>
-            </a>
+          <a href="javascript:void(0)" id="mobileCartButton" class="nav-link flex items-center">
+            <i class="fas fa-shopping-cart mr-2"></i>
+            <span>Cart</span>
+            <span id="mobileCartCount" class="ml-2 bg-primary-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </a>
+          <a href="login.html" id="mobileLoginLink" class="nav-link flex items-center">
+            <i class="fas fa-user mr-2"></i>
+            <span>Login</span>
+          </a>
         </nav>
       </div>
     </div>
@@ -110,23 +94,110 @@
     </div>
   </div>
   
+  <!-- ============================================
+       🎨 HERO CAROUSEL - NEW SECTION
+       ============================================ -->
+  <section class="hero-carousel-wrapper">
+    <div class="swiper hero-carousel">
+      <div class="swiper-wrapper">
+        
+        <!-- Slide 1 -->
+        <div class="swiper-slide hero-slide">
+          <div class="hero-slide-image" style="background-image: url('./public/css/images/screen22.jpg')"></div>
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-content">
+            <div class="container mx-auto px-4">
+              <h1 class="hero-title">Transform Your Classroom</h1>
+              <p class="hero-subtitle">Interactive smart boards designed for modern education</p>
+              <div class="hero-buttons">
+                <a href="school.html" class="btn-primary">
+                  <i class="fas fa-graduation-cap mr-2"></i> School Solutions
+                </a>
+                <a href="#contact" class="btn-secondary">
+                  <i class="fas fa-envelope mr-2"></i> Get Quote
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide hero-slide">
+          <div class="hero-slide-image" style="background-image: url('./public/css/images/screen18.jpg')"></div>
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-content">
+            <div class="container mx-auto px-4">
+              <h1 class="hero-title">Empower Your Business</h1>
+              <p class="hero-subtitle">Premium interactive displays for corporate excellence</p>
+              <div class="hero-buttons">
+                <a href="corporate.html" class="btn-primary">
+                  <i class="fas fa-briefcase mr-2"></i> Corporate Solutions
+                </a>
+                <a href="#contact" class="btn-secondary">
+                  <i class="fas fa-phone mr-2"></i> Contact Sales
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="swiper-slide hero-slide">
+          <div class="hero-slide-image" style="background-image: url('./public/css/images/screen17.jpg')"></div>
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-content">
+            <div class="container mx-auto px-4">
+              <h1 class="hero-title">Innovation Meets Reliability</h1>
+              <p class="hero-subtitle">8+ years of excellence in interactive technology</p>
+              <div class="hero-buttons">
+                <a href="school.html" class="btn-primary">
+                  <i class="fas fa-star mr-2"></i> View Products
+                </a>
+                <a href="#about" class="btn-secondary">
+                  <i class="fas fa-info-circle mr-2"></i> Learn More
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="swiper-slide hero-slide">
+          <div class="hero-slide-image" style="background-image: url('./public/css/images/screen22.jpg')"></div>
+          <div class="hero-slide-overlay"></div>
+          <div class="hero-slide-content">
+            <div class="container mx-auto px-4">
+              <h1 class="hero-title">Trusted by 500+ Schools</h1>
+              <p class="hero-subtitle">Join thousands of satisfied customers across East Africa</p>
+              <div class="hero-buttons">
+                <a href="school.html" class="btn-primary">
+                  <i class="fas fa-shopping-cart mr-2"></i> Shop Now
+                </a>
+                <a href="#testimonials" class="btn-secondary">
+                  <i class="fas fa-comments mr-2"></i> Testimonials
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      
+      <!-- Navigation Arrows -->
+      <div class="hero-swiper-button-prev">
+        <i class="fas fa-chevron-left"></i>
+      </div>
+      <div class="hero-swiper-button-next">
+        <i class="fas fa-chevron-right"></i>
+      </div>
+      
+      <!-- Pagination -->
+      <div class="hero-swiper-pagination"></div>
+    </div>
+  </section>
+  
   <!-- Main Content -->
   <main>
-    <!-- Hero Section -->
-    <section class="hero-section text-white py-24">
-      <div class="container mx-auto px-4 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-6">Smart Interactive Boards for Schools and Businesses</h1>
-        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10">Transform learning and collaboration with our high-quality interactive displays. Enhance engagement, productivity, and results with Esmartboard's cutting-edge technology.</p>
-        <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6">
-          <a href="school.html" class="btn-primary">
-            <i class="fas fa-school mr-2"></i> School Solutions
-          </a>
-          <a href="corporate.html" class="btn-secondary">
-            <i class="fas fa-briefcase mr-2"></i> Corporate Solutions
-          </a>
-        </div>
-      </div>
-    </section>
     
     <!-- Features Section -->
     <section class="py-16 bg-white">
@@ -271,290 +342,277 @@
       </div>
     </section>
 
-    <!-- About Us Section - Insert this AFTER the Featured Products Section in index.html -->
-<section class="py-20 about-section-bg">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- Left: Image/Video -->
-      <div class="order-2 lg:order-1">
-        <div class="relative">
-          <img src="./public/css/images/SMART-SBID-6286S-V3-PW.jpg" alt="Esmartboard Team" class="rounded-2xl shadow-2xl">
-          <div class="absolute -bottom-6 -right-6 bg-primary-600 text-white p-6 rounded-xl shadow-lg">
-            <div class="text-4xl font-bold mb-1">8+</div>
-            <div class="text-sm">Years of Excellence</div>
+    <!-- About Us Section -->
+    <section id="about" class="py-20 about-section-bg">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- Left: Image/Video -->
+          <div class="order-2 lg:order-1">
+            <div class="relative">
+              <img src="./public/css/images/SMART-SBID-6286S-V3-PW.jpg" alt="Esmartboard Team" class="rounded-2xl shadow-2xl">
+              <div class="absolute -bottom-6 -right-6 bg-primary-600 text-white p-6 rounded-xl shadow-lg">
+                <div class="text-4xl font-bold mb-1">8+</div>
+                <div class="text-sm">Years of Excellence</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Content -->
+          <div class="order-1 lg:order-2">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">
+              About <span class="text-primary-600">Esmartboard</span>
+            </h2>
+            <p class="text-lg text-gray-700 mb-6">
+              Esmartboard has been at the forefront of educational and business technology in East Africa. We're passionate about transforming how people learn, collaborate, and communicate through innovative interactive display solutions.
+            </p>
+            <p class="text-gray-600 mb-8">
+              Our mission is simple: provide world-class interactive smart boards that empower teachers, inspire students, and drive business success. With over 500 schools and 2,000 businesses trusting our solutions, we've become the leading provider of interactive displays in Kenya and beyond.
+            </p>
+            
+            <div class="grid grid-cols-2 gap-6 mb-8">
+              <div class="stat-box effect-lift border-primary">
+                <div class="stat-number text-3xl font-bold text-primary-600 mb-1">500+</div>
+                <div class="stat-label text-sm text-gray-600">Schools Served</div>
+              </div>
+              <div class="stat-box effect-lift border-green">
+                <div class="stat-number text-3xl font-bold text-green-600 mb-1">2,000+</div>
+                <div class="stat-label text-sm text-gray-600">Corporate Clients</div>
+              </div>
+              <div class="stat-box effect-lift border-teal">
+                <div class="stat-number text-3xl font-bold text-teal-600 mb-1">98%</div>
+                <div class="stat-label text-sm text-gray-600">Satisfaction Rate</div>
+              </div>
+              <div class="stat-box effect-lift border-blue">
+                <div class="stat-number text-3xl font-bold text-blue-600 mb-1">24/7</div>
+                <div class="stat-label text-sm text-gray-600">Support Available</div>
+              </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-4">
+              <a href="#contact" class="btn-primary">
+                <i class="fas fa-envelope mr-2"></i>Contact Us
+              </a>
+              <a href="school.html" class="btn-secondary">
+                <i class="fas fa-graduation-cap mr-2"></i>View Solutions
+              </a>
+            </div>
           </div>
         </div>
       </div>
-      
-      <!-- Right: Content -->
-      <div class="order-1 lg:order-2">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">
-          About <span class="text-primary-600">Esmartboard</span>
-        </h2>
-        <p class="text-lg text-gray-700 mb-6">
-          Esmartboard has been at the forefront of educational and business technology in East Africa. We're passionate about transforming how people learn, collaborate, and communicate through innovative interactive display solutions.
-        </p>
-        <p class="text-gray-600 mb-8">
-          Our mission is simple: provide world-class interactive smart boards that empower teachers, inspire students, and drive business success. With over 500 schools and 2,000 businesses trusting our solutions, we've become the leading provider of interactive displays in Kenya and beyond.
-        </p>
+    </section>
+
+    <!-- Our Values Section -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            The principles that guide everything we do
+          </p>
+        </div>
         
-        <div class="grid grid-cols-2 gap-6 mb-8">
-<div class="grid grid-cols-2 gap-6 mb-8">
-  <div class="stat-box effect-lift border-primary">
-    <div class="stat-number text-3xl font-bold text-primary-600 mb-1">500+</div>
-    <div class="stat-label text-sm text-gray-600">Schools Served</div>
-  </div>
-  <div class="stat-box effect-lift border-green">
-    <div class="stat-number text-3xl font-bold text-green-600 mb-1">2,000+</div>
-    <div class="stat-label text-sm text-gray-600">Corporate Clients</div>
-  </div>
-  <div class="stat-box effect-lift border-teal">
-    <div class="stat-number text-3xl font-bold text-teal-600 mb-1">98%</div>
-    <div class="stat-label text-sm text-gray-600">Satisfaction Rate</div>
-  </div>
-  <div class="stat-box effect-lift border-blue">
-    <div class="stat-number text-3xl font-bold text-blue-600 mb-1">24/7</div>
-    <div class="stat-label text-sm text-gray-600">Support Available</div>
-  </div>
-</div>
-        
-        <div class="flex flex-wrap gap-4">
-          <a href="#contact" class="btn-primary">
-            <i class="fas fa-envelope mr-2"></i>Contact Us
-          </a>
-          <a href="school.html" class="btn-secondary">
-            <i class="fas fa-graduation-cap mr-2"></i>View Solutions
-          </a>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-white p-8 rounded-xl text-center hover:shadow-lg transition">
+            <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-star text-3xl text-blue-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Quality First</h3>
+            <p class="text-gray-600">
+              We never compromise on quality. Every product meets rigorous international standards and comes with comprehensive warranties.
+            </p>
+          </div>
+          
+          <div class="bg-white p-8 rounded-xl text-center hover:shadow-lg transition">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-users text-3xl text-green-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Customer Success</h3>
+            <p class="text-gray-600">
+              Your success is our success. We provide ongoing support, training, and resources to ensure you get maximum value.
+            </p>
+          </div>
+          
+          <div class="bg-white p-8 rounded-xl text-center hover:shadow-lg transition">
+            <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-lightbulb text-3xl text-teal-600"></i>
+            </div>
+            <h3 class="text-xl font-bold mb-3">Innovation</h3>
+            <p class="text-gray-600">
+              We stay ahead of technology trends to bring you the latest and most effective interactive solutions.
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<!-- Our Values Section -->
-<section class="py-16 bg-gray-50">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Our Core Values</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        The principles that guide everything we do
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-xl text-center hover:shadow-lg transition">
-        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <i class="fas fa-star text-3xl text-blue-600"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Quality First</h3>
-        <p class="text-gray-600">
-          We never compromise on quality. Every product meets rigorous international standards and comes with comprehensive warranties.
-        </p>
-      </div>
-      
-      <div class="bg-white p-8 rounded-xl text-center hover:shadow-lg transition">
-        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <i class="fas fa-users text-3xl text-green-600"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Customer Success</h3>
-        <p class="text-gray-600">
-          Your success is our success. We provide ongoing support, training, and resources to ensure you get maximum value.
-        </p>
-      </div>
-      
-      <div class="bg-white p-8 rounded-xl text-center hover:shadow-lg transition">
-        <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <i class="fas fa-lightbulb text-3xl text-teal-600"></i>
-        </div>
-        <h3 class="text-xl font-bold mb-3">Innovation</h3>
-        <p class="text-gray-600">
-          We stay ahead of technology trends to bring you the latest and most effective interactive solutions.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Team Section (Optional) -->
-<section class="py-16 bg-white">
-  <div class="container mx-auto px-4">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
-      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-        Dedicated professionals committed to your success
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div class="text-center">
-      <!--  <img src="https://cdn.pixabay.com/photo/2016/11/29/13/14/attractive-1869761_1280.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">  -->
-        <h3 class="font-bold text-lg">Sarah Kimani</h3>
-        <p class="text-sm text-gray-600 mb-2">CEO & Founder</p>
-        <div class="flex justify-center gap-3">
-          <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      
-      <div class="text-center">
-      <!--  <img src="https://cdn.pixabay.com/photo/2015/03/03/20/42/man-657869_1280.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"> -->
-        <h3 class="font-bold text-lg">James Ochieng</h3>
-        <p class="text-sm text-gray-600 mb-2">Head of Sales</p>
-        <div class="flex justify-center gap-3">
-          <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      
-      <div class="text-center">
-      <!--  <img src="https://cdn.pixabay.com/photo/2019/02/11/20/20/woman-3990680_1280.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"> -->
-        <h3 class="font-bold text-lg">Grace Mwangi</h3>
-        <p class="text-sm text-gray-600 mb-2">Technical Director</p>
-        <div class="flex justify-center gap-3">
-          <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-      
-      <div class="text-center">
-      <!--  <img src="https://cdn.pixabay.com/photo/2017/06/26/02/47/man-2442565_1280.jpg" alt="Team Member" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover"> -->
-        <h3 class="font-bold text-lg">David Kariuki</h3>
-        <p class="text-sm text-gray-600 mb-2">Customer Support Lead</p>
-        <div class="flex justify-center gap-3">
-          <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
-          <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="py-20 bg-gradient-to-br from-primary-700 to-primary-900 text-white">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-      <!-- Left: Contact Info -->
-      <div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
-        <p class="text-lg mb-8 opacity-90">
-          Have questions? We're here to help. Reach out to us and we'll respond as soon as possible.
-        </p>
-        
-        <div class="space-y-6">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-map-marker-alt text-2xl"></i>
-            </div>
-            <div>
-              <h4 class="font-bold mb-1">Visit Us</h4>
-              <p class="opacity-90">Nairobi, Kenya</p>
-            </div>
-          </div>
-          
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-phone text-2xl"></i>
-            </div>
-            <div>
-              <h4 class="font-bold mb-1">Call Us</h4>
-              <p class="opacity-90">+254 711 767 340</p>
-              <p class="opacity-90">+254 738 767 340</p>
-            </div>
-          </div>
-          
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-envelope text-2xl"></i>
-            </div>
-            <div>
-              <h4 class="font-bold mb-1">Email Us</h4>
-              <p class="opacity-90">sales@esmartboard.africa</p>
-              <p class="opacity-90">support@esmartboard.africa</p>
-            </div>
-          </div>
-          
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
-              <i class="fas fa-clock text-2xl"></i>
-            </div>
-            <div>
-              <h4 class="font-bold mb-1">Business Hours</h4>
-              <p class="opacity-90">Monday - Friday: 8:00 AM - 6:00 PM</p>
-              <p class="opacity-90">Saturday: 9:00 AM - 2:00 PM</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Right: Contact Form -->
-      <div class="bg-white rounded-2xl p-8 text-gray-800">
-        <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
-        <form class="space-y-4" onsubmit="handleContactForm(event)">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div>
-              <label class="block font-semibold mb-2 text-sm">First Name *</label>
-              <input type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
-            </div>
-            <div>
-              <label class="block font-semibold mb-2 text-sm">Last Name *</label>
-              <input type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
-            </div>
-          </div>
-          
-          <div>
-            <label class="block font-semibold mb-2 text-sm">Email *</label>
-            <input type="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
-          </div>
-          
-          <div>
-            <label class="block font-semibold mb-2 text-sm">Phone Number *</label>
-            <input type="tel" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
-          </div>
-          
-          <div>
-            <label class="block font-semibold mb-2 text-sm">Subject *</label>
-            <select required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
-              <option value="">Select a subject</option>
-              <option value="school">School Solutions</option>
-              <option value="corporate">Corporate Solutions</option>
-              <option value="support">Technical Support</option>
-              <option value="quote">Request Quote</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div>
-            <label class="block font-semibold mb-2 text-sm">Message *</label>
-            <textarea required rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none" placeholder="Tell us how we can help..."></textarea>
-          </div>
-          
-          <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-lg transition">
-            <i class="fas fa-paper-plane mr-2"></i>Send Message
-          </button>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
-
-<script>
-function handleContactForm(event) {
-  event.preventDefault();
-  
-  // Show success message
-  alert('Thank you for your message! We will get back to you within 24 hours.');
-  
-  // Reset form
-  event.target.reset();
-  
-  // In production, you would send this to your backend:
-  // const formData = new FormData(event.target);
-  // fetch('/api/contact', { method: 'POST', body: formData });
-}
-</script>
-    
-    <!-- Testimonials Section -->
+    <!-- Team Section -->
     <section class="py-16 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Team</h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Dedicated professionals committed to your success
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <h3 class="font-bold text-lg">Sarah Kimani</h3>
+            <p class="text-sm text-gray-600 mb-2">CEO & Founder</p>
+            <div class="flex justify-center gap-3">
+              <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <h3 class="font-bold text-lg">James Ochieng</h3>
+            <p class="text-sm text-gray-600 mb-2">Head of Sales</p>
+            <div class="flex justify-center gap-3">
+              <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <h3 class="font-bold text-lg">Grace Mwangi</h3>
+            <p class="text-sm text-gray-600 mb-2">Technical Director</p>
+            <div class="flex justify-center gap-3">
+              <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+          
+          <div class="text-center">
+            <h3 class="font-bold text-lg">David Kariuki</h3>
+            <p class="text-sm text-gray-600 mb-2">Customer Support Lead</p>
+            <div class="flex justify-center gap-3">
+              <a href="#" class="text-gray-400 hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
+              <a href="#" class="text-gray-400 hover:text-blue-400"><i class="fab fa-twitter"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gradient-to-br from-primary-700 to-primary-900 text-white">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Left: Contact Info -->
+          <div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6">Get in Touch</h2>
+            <p class="text-lg mb-8 opacity-90">
+              Have questions? We're here to help. Reach out to us and we'll respond as soon as possible.
+            </p>
+            
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-map-marker-alt text-2xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Visit Us</h4>
+                  <p class="opacity-90">Nairobi, Kenya</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-phone text-2xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Call Us</h4>
+                  <p class="opacity-90">+254 711 767 340</p>
+                  <p class="opacity-90">+254 738 767 340</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-envelope text-2xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Email Us</h4>
+                  <p class="opacity-90">sales@esmartboard.africa</p>
+                  <p class="opacity-90">support@esmartboard.africa</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start gap-4">
+                <div class="w-12 h-12 bg-white bg-opacity-20 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-clock text-2xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-1">Business Hours</h4>
+                  <p class="opacity-90">Monday - Friday: 8:00 AM - 6:00 PM</p>
+                  <p class="opacity-90">Saturday: 9:00 AM - 2:00 PM</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Contact Form -->
+          <div class="bg-white rounded-2xl p-8 text-gray-800">
+            <h3 class="text-2xl font-bold mb-6">Send us a Message</h3>
+            <form class="space-y-4" onsubmit="handleContactForm(event)">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label class="block font-semibold mb-2 text-sm">First Name *</label>
+                  <input type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
+                </div>
+                <div>
+                  <label class="block font-semibold mb-2 text-sm">Last Name *</label>
+                  <input type="text" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
+                </div>
+              </div>
+              
+              <div>
+                <label class="block font-semibold mb-2 text-sm">Email *</label>
+                <input type="email" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
+              </div>
+              
+              <div>
+                <label class="block font-semibold mb-2 text-sm">Phone Number *</label>
+                <input type="tel" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
+              </div>
+              
+              <div>
+                <label class="block font-semibold mb-2 text-sm">Subject *</label>
+                <select required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none">
+                  <option value="">Select a subject</option>
+                  <option value="school">School Solutions</option>
+                  <option value="corporate">Corporate Solutions</option>
+                  <option value="support">Technical Support</option>
+                  <option value="quote">Request Quote</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block font-semibold mb-2 text-sm">Message *</label>
+                <textarea required rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:border-primary-600 focus:outline-none" placeholder="Tell us how we can help..."></textarea>
+              </div>
+              
+              <button type="submit" class="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-3 px-6 rounded-lg transition">
+                <i class="fas fa-paper-plane mr-2"></i>Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+    function handleContactForm(event) {
+      event.preventDefault();
+      alert('Thank you for your message! We will get back to you within 24 hours.');
+      event.target.reset();
+    }
+    </script>
+        
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-16 bg-white">
       <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
         
@@ -708,80 +766,42 @@ function handleContactForm(event) {
 
   <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
   <script src="./src/js/app.js"></script>
+  
   <script>
-// Make mobile cart button work
-document.addEventListener('DOMContentLoaded', function() {
-  const mobileCartButton = document.getElementById('mobileCartButton');
-  if (mobileCartButton) {
-    mobileCartButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      // Open cart sidebar
-      const cartSidebar = document.getElementById('cartSidebar');
-      if (cartSidebar) {
-        cartSidebar.classList.add('show');
-        document.body.style.overflow = 'hidden';
-      }
-      
-      // Close mobile menu
-      const mobileMenu = document.getElementById('mobile-menu');
-      if (mobileMenu) {
-        mobileMenu.classList.remove('show');
-      }
-    });
-  }
-  
-  // Update mobile cart count
-  function updateMobileCartCount() {
-    const cart = JSON.parse(localStorage.getItem('esmartboardCart') || '[]');
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    const mobileCartCount = document.getElementById('mobileCartCount');
-    if (mobileCartCount) {
-      mobileCartCount.textContent = totalItems;
+  // Make mobile cart button work
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileCartButton = document.getElementById('mobileCartButton');
+    if (mobileCartButton) {
+      mobileCartButton.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const cartSidebar = document.getElementById('cartSidebar');
+        if (cartSidebar) {
+          cartSidebar.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        }
+        
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenu) {
+          mobileMenu.classList.remove('show');
+        }
+      });
     }
-  }
-  
-  // Update on page load
-  updateMobileCartCount();
-  
-  // Update when cart changes
-  window.addEventListener('storage', updateMobileCartCount);
-});
-</script>
-
-<!-- 
-  ADDITIONAL CSS FIX - Add to your style.css
--->
-<style>
-/* Fix mobile menu z-index and positioning */
-.mobile-menu {
-  position: relative;
-  z-index: 100;
-}
-
-/* Ensure mobile menu items are clickable */
-.mobile-menu .nav-link {
-  position: relative;
-  z-index: 101;
-  pointer-events: auto;
-  touch-action: manipulation;
-}
-
-/* Better mobile touch targets */
-@media (max-width: 767px) {
-  .mobile-menu .nav-link {
-    min-height: 48px;
-    padding: 0.75rem;
-  }
-  
-  /* Prevent double-tap zoom on buttons */
-  .mobile-menu a,
-  .mobile-menu button {
-    touch-action: manipulation;
-  }
-}
-</style>
+    
+    function updateMobileCartCount() {
+      const cart = JSON.parse(localStorage.getItem('esmartboardCart') || '[]');
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      
+      const mobileCartCount = document.getElementById('mobileCartCount');
+      if (mobileCartCount) {
+        mobileCartCount.textContent = totalItems;
+      }
+    }
+    
+    updateMobileCartCount();
+    window.addEventListener('storage', updateMobileCartCount);
+  });
+  </script>
 </body>
 </html>

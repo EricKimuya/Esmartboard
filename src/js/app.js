@@ -2,6 +2,90 @@
 // SWIPER INITIALIZATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
+  
+  // ========================================
+  // HERO CAROUSEL - NEW
+  // ========================================
+  const heroCarousel = document.querySelector('.hero-carousel');
+  
+  if (heroCarousel) {
+    new Swiper('.hero-carousel', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      speed: 1000,
+      effect: 'fade',
+      fadeEffect: {
+        crossFade: true
+      },
+      navigation: {
+        nextEl: '.hero-swiper-button-next',
+        prevEl: '.hero-swiper-button-prev',
+      },
+      pagination: {
+        el: '.hero-swiper-pagination',
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '"></span>';
+        },
+      },
+      on: {
+        init: function() {
+          // Reset animations when carousel initializes
+          resetSlideAnimations(this.slides[this.activeIndex]);
+        },
+        slideChangeTransitionStart: function() {
+          // Reset animations on all slides
+          this.slides.forEach(slide => {
+            const title = slide.querySelector('.hero-title');
+            const subtitle = slide.querySelector('.hero-subtitle');
+            const buttons = slide.querySelector('.hero-buttons');
+            
+            if (title) title.style.animation = 'none';
+            if (subtitle) subtitle.style.animation = 'none';
+            if (buttons) buttons.style.animation = 'none';
+          });
+        },
+        slideChangeTransitionEnd: function() {
+          // Restart animations on active slide
+          resetSlideAnimations(this.slides[this.activeIndex]);
+        }
+      }
+    });
+  }
+  
+  function resetSlideAnimations(slide) {
+    const title = slide.querySelector('.hero-title');
+    const subtitle = slide.querySelector('.hero-subtitle');
+    const buttons = slide.querySelector('.hero-buttons');
+    
+    // Force reflow to restart animations
+    if (title) {
+      title.style.animation = 'none';
+      void title.offsetWidth; // Trigger reflow
+      title.style.animation = 'fadeInUp 0.8s ease-out 0.3s forwards';
+    }
+    
+    if (subtitle) {
+      subtitle.style.animation = 'none';
+      void subtitle.offsetWidth;
+      subtitle.style.animation = 'fadeInUp 0.8s ease-out 0.5s forwards';
+    }
+    
+    if (buttons) {
+      buttons.style.animation = 'none';
+      void buttons.offsetWidth;
+      buttons.style.animation = 'fadeInUp 0.8s ease-out 0.7s forwards';
+    }
+  }
+  
+  // ========================================
+  // FEATURED PRODUCTS CAROUSEL
+  // ========================================
   const featuredProductsSwiper = document.getElementById('featured-products');
   
   if (featuredProductsSwiper) {
@@ -115,7 +199,7 @@ if (clearCartBtn) {
   });
 }
 
-// Add to Cart Function - ENHANCED
+// Add to Cart Function
 function addToCart(name, price, quantity = 1) {
   const existingItem = cart.find(item => item.name === name);
 
@@ -126,22 +210,16 @@ function addToCart(name, price, quantity = 1) {
       name, 
       price, 
       quantity,
-      id: Date.now() + Math.random() // Unique ID for each item
+      id: Date.now() + Math.random()
     });
   }
 
   saveCart();
   updateCartUI();
   showNotification(`${name} added to cart!`, 'success');
-  
-  // Optional: Open cart sidebar briefly to show item was added
-  // Uncomment next 3 lines if you want this behavior
-  // cartSidebar.classList.add('show');
-  // document.body.style.overflow = 'hidden';
-  // setTimeout(() => { cartSidebar.classList.remove('show'); document.body.style.overflow = ''; }, 2000);
 }
 
-// Remove Single Item from Cart - NEW
+// Remove Single Item from Cart
 function removeFromCart(index) {
   cart.splice(index, 1);
   saveCart();
@@ -149,7 +227,7 @@ function removeFromCart(index) {
   showNotification('Item removed from cart', 'info');
 }
 
-// Update Quantity - NEW
+// Update Quantity
 function updateQuantity(index, change) {
   if (cart[index]) {
     cart[index].quantity += change;
@@ -168,11 +246,11 @@ function saveCart() {
   localStorage.setItem('esmartboardCart', JSON.stringify(cart));
 }
 
-// Update Cart UI - ENHANCED with better styling
+// Update Cart UI
 function updateCartUI() {
   const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
   
-  // Update all cart count badges (header + mobile menu)
+  // Update all cart count badges
   const cartCountElements = document.querySelectorAll('#cartCount, .mobile-menu .bg-primary-600');
   cartCountElements.forEach(el => {
     if (el) el.textContent = totalItems;
@@ -232,7 +310,7 @@ function updateCartUI() {
   cartSubtotal.textContent = `$${subtotal.toLocaleString()}`;
 }
 
-// Show Notification - NEW
+// Show Notification
 function showNotification(message, type = 'success') {
   const notification = document.createElement('div');
   const bgColor = type === 'success' ? 'bg-green-500' : 
@@ -379,13 +457,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ========================================
-// FORM VALIDATION (if contact forms exist)
+// FORM VALIDATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
   const contactForms = document.querySelectorAll('.contact-form, form');
   
   contactForms.forEach(form => {
-    // Skip if it's a search form or doesn't have submit
     if (form.classList.contains('search-form')) return;
     
     form.addEventListener('submit', (e) => {
@@ -394,7 +471,6 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData(form);
       let isValid = true;
       
-      // Basic validation
       for (let [key, value] of formData.entries()) {
         if (!value.trim()) {
           isValid = false;
@@ -436,9 +512,4 @@ function debounce(func, wait) {
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
-}
-
-// Log cart updates (for debugging - remove in production)
-if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-  console.log('Cart initialized:', cart);
 }
