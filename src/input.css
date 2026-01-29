@@ -42,11 +42,20 @@
     .hero-carousel {
       height: 500px;
     }
+    
+    .hero-inner {
+      padding: 2rem 1.5rem;
+    }
   }
   
   @media (max-width: 480px) {
     .hero-carousel {
       height: 400px;
+    }
+    
+    .hero-inner {
+      padding: 1.5rem 1rem;
+      border-radius: 12px;
     }
   }
   
@@ -82,25 +91,25 @@
     }
   }
   
-.hero-slide-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to right,
-      rgba(2, 132, 199, 0.88) 0%,
-      rgba(2, 132, 199, 0.75) 35%,
-      rgba(6, 182, 212, 0.55) 60%,
-      rgba(6, 182, 212, 0.35) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 0, 0, 0.15) 40%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
-}
-
+  .hero-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(
+        to right,
+        rgba(2, 132, 199, 0.88) 0%,
+        rgba(2, 132, 199, 0.75) 35%,
+        rgba(6, 182, 212, 0.55) 60%,
+        rgba(6, 182, 212, 0.35) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.35) 100%
+      );
+    z-index: 1;
+  }
   
   .hero-slide-content {
     position: relative;
@@ -115,25 +124,23 @@
   }
 
   .hero-slide-content > .hero-inner {
-  max-width: 900px;
-  width: 100%;
-  padding: 3rem 3.5rem;
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
-  background: rgba(255, 255, 255, 0.08);
-}
+    max-width: 900px;
+    width: 100%;
+    padding: 3rem 3.5rem;
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.08);
+  }
 
-.hero-inner {
-  max-width: 960px;
-  width: 100%;
-  padding: 3rem 3.5rem;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-
+  .hero-inner {
+    max-width: 960px;
+    width: 100%;
+    padding: 3rem 3.5rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
   
   .hero-title {
     font-size: 3rem;
@@ -190,8 +197,6 @@
       transform: translateY(0);
     }
   }
-
-  
   
   /* Navigation Arrows */
   .hero-swiper-button-prev,
@@ -389,6 +394,43 @@
   /* ========================================
      INDEX PAGE STYLES
      ======================================== */
+  
+  /* Features Section with Parallax Background - INDEX PAGE */
+  .features-parallax-section {
+    background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+      url('./images/hero-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  /* Alternative: If you want a different image, create this class */
+  .features-parallax-alt {
+    background-image: 
+      linear-gradient(rgba(249, 250, 251, 0.97), rgba(249, 250, 251, 0.97)),
+      url('./images/screen5.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+  }
+  
+  /* Benefit cards get a nice lift effect over the parallax */
+  .benefit-card-index {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(2, 132, 199, 0.1);
+  }
+  
+  .benefit-card-index:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background: rgba(255, 255, 255, 1);
+    border-color: rgba(2, 132, 199, 0.2);
+  }
   
   /* Hero Section - INDEX PAGE ONLY (REMOVED - REPLACED BY CAROUSEL) */
   /* .hero-section {
@@ -873,6 +915,11 @@
   .mobile-menu {
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+  }
+  
+  /* Fix parallax on mobile - use scroll instead of fixed */
+  .features-parallax-section {
+    background-attachment: scroll;
   }
 }
 

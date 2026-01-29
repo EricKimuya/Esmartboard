@@ -624,11 +624,20 @@ body {
   .hero-carousel {
     height: 500px;
   }
+
+  .hero-inner {
+    padding: 2rem 1.5rem;
+  }
 }
 
 @media (max-width: 480px) {
   .hero-carousel {
     height: 400px;
+  }
+
+  .hero-inner {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
   }
 }
 
@@ -670,19 +679,20 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(
-      to right,
-      rgba(2, 132, 199, 0.88) 0%,
-      rgba(2, 132, 199, 0.75) 35%,
-      rgba(6, 182, 212, 0.55) 60%,
-      rgba(6, 182, 212, 0.35) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.25) 0%,
-      rgba(0, 0, 0, 0.15) 40%,
-      rgba(0, 0, 0, 0.35) 100%
-    );
+      linear-gradient(
+        to right,
+        rgba(2, 132, 199, 0.88) 0%,
+        rgba(2, 132, 199, 0.75) 35%,
+        rgba(6, 182, 212, 0.55) 60%,
+        rgba(6, 182, 212, 0.35) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.25) 0%,
+        rgba(0, 0, 0, 0.15) 40%,
+        rgba(0, 0, 0, 0.35) 100%
+      );
+  z-index: 1;
 }
 
 .hero-slide-content {
@@ -1016,6 +1026,36 @@ header .flex {
 /* ========================================
      INDEX PAGE STYLES
      ======================================== */
+
+/* Features Section with Parallax Background - INDEX PAGE */
+
+.features-parallax-section {
+  background-image: 
+      linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)),
+      url('./images/hero-background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+
+/* Alternative: If you want a different image, create this class */
+
+/* Benefit cards get a nice lift effect over the parallax */
+
+.benefit-card-index {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(2, 132, 199, 0.1);
+}
+
+.benefit-card-index:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: rgba(255, 255, 255, 1);
+  border-color: rgba(2, 132, 199, 0.2);
+}
 
 /* Hero Section - INDEX PAGE ONLY (REMOVED - REPLACED BY CAROUSEL) */
 
@@ -1452,6 +1492,10 @@ header .flex {
 
 .top-24 {
   top: 6rem;
+}
+
+.z-10 {
+  z-index: 10;
 }
 
 .z-50 {
@@ -2409,6 +2453,12 @@ section {
   .mobile-menu {
     padding-top: 0.5rem;
     padding-bottom: 1rem;
+  }
+
+  /* Fix parallax on mobile - use scroll instead of fixed */
+
+  .features-parallax-section {
+    background-attachment: scroll;
   }
 }
 
