@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Account - Esmartboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./public/css/style.css">
+  <style>
+    .account-page {
+      font-family: 'Inter', sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+
+    .account-container {
+      max-width: 1180px;
+      margin: 32px auto 80px;
+      padding: 0 20px;
+    }
+
+    .account-hero {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      padding: 36px 40px;
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      color: #fff;
+      box-shadow: 0 24px 60px rgba(2, 132, 199, 0.25);
+    }
+
+    .account-hero::before {
+      content: '';
+      position: absolute;
+      inset: -40% -20%;
+      background: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.22), transparent 60%);
+      animation: heroFloat 16s ease-in-out infinite;
+    }
+
+    @keyframes heroFloat {
+      0% { transform: translate3d(0, 0, 0); }
+      50% { transform: translate3d(20px, -10px, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+
+    .account-hero-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .account-kicker {
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      opacity: 0.8;
+      margin-bottom: 10px;
+    }
+
+    .account-hero h1 {
+      font-size: clamp(2rem, 3vw, 2.6rem);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .account-subtitle {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 520px;
+    }
+
+    .account-hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .account-hero .btn-secondary {
+      border-color: rgba(255, 255, 255, 0.5);
+      color: #0f172a;
+      background: #fff;
+    }
+
+    .account-layout {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 28px;
+      margin-top: 32px;
+      align-items: start;
+    }
+
+    .account-sidebar {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+      position: sticky;
+      top: 96px;
+    }
+
+    .sidebar-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .sidebar-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #0f172a;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 8px;
+      border: 1px solid transparent;
+    }
+
+    .sidebar-item i {
+      color: #0284c7;
+    }
+
+    .sidebar-item:hover {
+      background: #f1f5f9;
+      border-color: #e2e8f0;
+    }
+
+    .sidebar-item.active {
+      background: #e0f2fe;
+      border-color: #7dd3fc;
+      color: #0369a1;
+    }
+
+    .sidebar-item.active i {
+      color: #0369a1;
+    }
+
+    .sidebar-item.logout-btn {
+      color: #991b1b;
+      background: #fef2f2;
+      border-color: #fecaca;
+    }
+
+    .sidebar-item.logout-btn i {
+      color: #b91c1c;
+    }
+
+    .account-content {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeUp 0.4s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-head {
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .section-subtitle {
+      color: #64748b;
+      font-size: 0.98rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 20px;
+      border: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 16px 30px rgba(15, 23, 42, 0.05);
+    }
+
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-top: 4px solid #38bdf8;
+      opacity: 0.6;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .stat-label {
+      color: #64748b;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .panel-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 24px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .panel-head h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .text-link {
+      color: #0284c7;
+      font-weight: 600;
+    }
+
+    .text-link:hover {
+      text-decoration: underline;
+    }
+
+    .order-card {
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      padding: 18px;
+      margin-bottom: 16px;
+      background: #f8fafc;
+    }
+
+    .order-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .order-status {
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .status-completed {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .empty-state {
+      border: 2px dashed #e2e8f0;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      color: #64748b;
+      background: #f8fafc;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #334155;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #38bdf8;
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+    }
+
+    .danger-card {
+      margin-top: 24px;
+      border-radius: 18px;
+      padding: 20px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+    }
+
+    .danger-card h3 {
+      color: #991b1b;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .danger-card p {
+      color: #7f1d1d;
+      margin-bottom: 12px;
+    }
+
+    .danger-card .btn-secondary {
+      border-color: #fca5a5;
+      color: #b91c1c;
+      background: #fff;
+    }
+
+    .danger-card .btn-secondary:hover {
+      background: #fee2e2;
+    }
+
+    @media (max-width: 1024px) {
+      .account-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .account-sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 8px;
+      }
+
+      .sidebar-title {
+        grid-column: 1 / -1;
+        text-align: center;
+        margin-bottom: 4px;
+      }
+
+      .sidebar-item {
+        margin-bottom: 0;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .account-hero {
+        padding: 28px;
+      }
+
+      .account-hero-actions {
+        width: 100%;
+      }
+
+      .account-hero .btn-primary,
+      .account-hero .btn-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body class="account-page">
+  <!-- Header -->
+  <header class="bg-white sticky top-0 z-50 header-shadow">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <a href="index.html" class="flex items-center">
+          <img src="./public/css/images/esmart no bg.png" alt="Esmartboard Logo" class="w-44 h-auto">
+        </a>
+        
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-1">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="school.html" class="nav-link">School</a>
+          <a href="corporate.html" class="nav-link">Corporate</a>
+          <a href="account.html" class="nav-link active">My Account</a>
+        </nav>
+        
+        <!-- Mobile menu button -->
+        <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-gray-800 hover:text-primary-600 focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Mobile Navigation -->
+      <div id="mobile-menu" class="mobile-menu py-4 pb-6">
+        <nav class="flex flex-col space-y-3">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="school.html" class="nav-link">School</a>
+          <a href="corporate.html" class="nav-link">Corporate</a>
+          <a href="account.html" class="nav-link active">My Account</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Account Container -->
+  <div class="account-container">
+    <!-- Account Hero -->
+    <section class="account-hero">
+      <div class="account-hero-inner">
+        <div class="account-hero-text">
+          <p class="account-kicker">My Account</p>
+          <h1>Welcome back, <span id="userName">User</span>!</h1>
+          <p class="account-subtitle">Manage your profile, track orders, and keep your preferences up to date.</p>
+        </div>
+        <div class="account-hero-actions">
+          <button class="btn-primary" onclick="showAccountTab('profile')">Edit Profile</button>
+          <button class="btn-secondary" onclick="showAccountTab('orders')">View Orders</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Grid -->
+    <div class="account-layout">
+      <!-- Sidebar -->
+      <aside class="account-sidebar">
+        <div class="sidebar-title">Account Menu</div>
+        <div class="sidebar-item active" data-tab="overview" onclick="showAccountTab('overview')">
+          <i class="fas fa-th-large"></i>
+          <span>Overview</span>
+        </div>
+        <div class="sidebar-item" data-tab="profile" onclick="showAccountTab('profile')">
+          <i class="fas fa-user"></i>
+          <span>Profile</span>
+        </div>
+        <div class="sidebar-item" data-tab="orders" onclick="showAccountTab('orders')">
+          <i class="fas fa-box"></i>
+          <span>My Orders</span>
+        </div>
+        <div class="sidebar-item" data-tab="addresses" onclick="showAccountTab('addresses')">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Addresses</span>
+        </div>
+        <div class="sidebar-item" data-tab="security" onclick="showAccountTab('security')">
+          <i class="fas fa-lock"></i>
+          <span>Security</span>
+        </div>
+        <div class="sidebar-item logout-btn" onclick="handleAccountLogout()">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Logout</span>
+        </div>
+      </aside>
+
+      <!-- Content -->
+      <main class="account-content">
+        
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+          <div class="section-head">
+            <h2 class="section-title">Account Overview</h2>
+            <p class="section-subtitle">A snapshot of your activity and membership details.</p>
+          </div>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number" id="totalOrders">0</div>
+              <div class="stat-label">Total Orders</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="totalSpent">$0</div>
+              <div class="stat-label">Total Spent</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" id="memberSince">2024</div>
+              <div class="stat-label">Member Since</div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-head">
+              <h3>Recent Orders</h3>
+              <a class="text-link" href="school.html">Start shopping</a>
+            </div>
+            <div id="recentOrders">
+              <div class="empty-state">
+                No orders yet. Explore the catalog and place your first order.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Profile Tab -->
+        <div id="profile" class="tab-content">
+          <div class="section-head">
+            <h2 class="section-title">Edit Profile</h2>
+            <p class="section-subtitle">Keep your contact info current for faster support.</p>
+          </div>
+          <div class="panel-card">
+            <form id="profileForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-input" id="profileFirstName" required>
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-input" id="profileLastName" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" class="form-input" id="profileEmail" disabled>
+            </div>
+
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" class="form-input" id="profilePhone" required>
+            </div>
+
+            <div class="form-group">
+              <label>Account Type</label>
+              <input type="text" class="form-input" id="profileAccountType" disabled>
+            </div>
+
+            <button type="submit" class="btn-primary">Save Changes</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Orders Tab -->
+        <div id="orders" class="tab-content">
+          <div class="section-head">
+            <h2 class="section-title">Order History</h2>
+            <p class="section-subtitle">Review invoices, totals, and order status.</p>
+          </div>
+          <div class="panel-card">
+            <div id="ordersList">
+              <div class="empty-state">No orders found.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Addresses Tab -->
+        <div id="addresses" class="tab-content">
+          <div class="section-head">
+            <h2 class="section-title">Saved Addresses</h2>
+            <p class="section-subtitle">Manage shipping and billing locations.</p>
+          </div>
+          <div class="panel-card">
+            <div id="addressesList">
+              <div class="empty-state">No saved addresses yet.</div>
+            </div>
+            <button class="btn-secondary" onclick="alert('Add address feature coming soon!')">
+              <i class="fas fa-plus"></i> Add New Address
+            </button>
+          </div>
+        </div>
+
+        <!-- Security Tab -->
+        <div id="security" class="tab-content">
+          <div class="section-head">
+            <h2 class="section-title">Security Settings</h2>
+            <p class="section-subtitle">Update your password and account security details.</p>
+          </div>
+          <div class="panel-card">
+            <form id="passwordForm">
+              <div class="form-group">
+                <label>Current Password</label>
+                <input type="password" class="form-input" id="currentPassword" required>
+              </div>
+
+              <div class="form-group">
+                <label>New Password</label>
+                <input type="password" class="form-input" id="newPassword" required>
+              </div>
+
+              <div class="form-group">
+                <label>Confirm New Password</label>
+                <input type="password" class="form-input" id="confirmNewPassword" required>
+              </div>
+
+              <button type="submit" class="btn-primary">Change Password</button>
+            </form>
+
+            <div class="danger-card">
+              <h3>Danger Zone</h3>
+              <p>Once you delete your account, there is no going back.</p>
+              <button class="btn-secondary logout-btn" onclick="deleteUserAccount()">
+                <i class="fas fa-trash"></i> Delete Account
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="./src/js/app.js"></script>
+</body>
+</html>

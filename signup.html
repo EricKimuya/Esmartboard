@@ -613,6 +613,7 @@
       users.push(newUser);
       localStorage.setItem('esmartboard_users', JSON.stringify(users));
       
+      // Save current user session
       localStorage.setItem('esmartboard_current_user', JSON.stringify({
         email: newUser.email,
         firstName: newUser.firstName,
@@ -621,6 +622,8 @@
       }));
       
       alert('Account created successfully! Redirecting...');
+      
+      // Redirect to index page (header will auto-update on page load)
       setTimeout(() => window.location.href = 'index.html', 1000);
     });
   </script>

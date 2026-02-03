@@ -1,4 +1,71 @@
 // ========================================
+// HEADER USER STATUS UPDATE
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+  updateHeaderUserStatus();
+});
+
+function updateHeaderUserStatus() {
+  const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+  
+  // Desktop login link
+  const desktopLoginLink = document.querySelector('a[href="login.html"]:not(#mobileLoginLink)');
+  
+  // Mobile login link
+  const mobileLoginLink = document.getElementById('mobileLoginLink');
+  
+  if (currentUser) {
+    // User is logged in - show account link
+    if (desktopLoginLink) {
+      desktopLoginLink.href = 'account.html';
+      desktopLoginLink.innerHTML = `
+        <i class="fas fa-user-circle"></i>
+        <span class="ml-1">${currentUser.firstName}</span>
+      `;
+      desktopLoginLink.classList.add('text-primary-600');
+    }
+    
+    if (mobileLoginLink) {
+      mobileLoginLink.href = 'account.html';
+      mobileLoginLink.innerHTML = `
+        <i class="fas fa-user-circle mr-2"></i>
+        <span>${currentUser.firstName}</span>
+      `;
+      mobileLoginLink.classList.add('text-primary-600');
+    }
+  } else {
+    // User is not logged in - show login link
+    if (desktopLoginLink) {
+      desktopLoginLink.href = 'login.html';
+      desktopLoginLink.innerHTML = `
+        <i class="fas fa-user"></i>
+        <span class="ml-1">Login</span>
+      `;
+      desktopLoginLink.classList.remove('text-primary-600');
+    }
+    
+    if (mobileLoginLink) {
+      mobileLoginLink.href = 'login.html';
+      mobileLoginLink.innerHTML = `
+        <i class="fas fa-user mr-2"></i>
+        <span>Login</span>
+      `;
+      mobileLoginLink.classList.remove('text-primary-600');
+    }
+  }
+}
+
+// Update header when user logs in or out
+window.addEventListener('storage', function(e) {
+  if (e.key === 'esmartboard_current_user') {
+    updateHeaderUserStatus();
+  }
+});
+
+// Make function globally accessible
+window.updateHeaderUserStatus = updateHeaderUserStatus;
+
+// ========================================
 // SWIPER INITIALIZATION
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -487,6 +554,267 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// ========================================
+// ACCOUNT/PROFILE PAGE FUNCTIONALITY
+// ========================================
+document.addEventListener('DOMContentLoaded', () => {
+  // Check if we're on the account page
+  if (window.location.pathname.includes('account.html')) {
+    initializeAccountPage();
+  }
+});
+
+function initializeAccountPage() {
+  // Check if user is logged in
+  const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+  if (!currentUser) {
+    window.location.href = 'login.html';
+    return;
+  }
+
+  // Load user data
+  const userNameElement = document.getElementById('userName');
+  if (userNameElement) {
+    userNameElement.textContent = currentUser.firstName;
+  }
+  
+  loadAccountData();
+  loadUserOrders();
+  setupAccountEventListeners();
+}
+
+function loadAccountData() {
+  const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+  const users = JSON.parse(localStorage.getItem('esmartboard_users') || '[]');
+  const user = users.find(u => u.email === currentUser.email);
+  
+  if (user) {
+    // Load profile data
+    const profileFirstName = document.getElementById('profileFirstName');
+    const profileLastName = document.getElementById('profileLastName');
+    const profileEmail = document.getElementById('profileEmail');
+    const profilePhone = document.getElementById('profilePhone');
+    const profileAccountType = document.getElementById('profileAccountType');
+    const memberSince = document.getElementById('memberSince');
+    
+    if (profileFirstName) profileFirstName.value = user.firstName;
+    if (profileLastName) profileLastName.value = user.lastName;
+    if (profileEmail) profileEmail.value = user.email;
+    if (profilePhone) profilePhone.value = user.phone || '';
+    if (profileAccountType) profileAccountType.value = user.accountType || 'Individual';
+    
+    if (memberSince) {
+      const joinDate = new Date(user.createdAt || Date.now());
+      memberSince.textContent = joinDate.getFullYear();
+    }
+  }
+}
+
+function loadUserOrders() {
+  const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+  const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+  const userOrders = orders.filter(o => o.customerInfo && o.customerInfo.email === currentUser.email);
+  
+  // Update stats
+  const totalOrdersElement = document.getElementById('totalOrders');
+  if (totalOrdersElement) {
+    totalOrdersElement.textContent = userOrders.length;
+  }
+  
+  const totalSpent = userOrders.reduce((sum, order) => sum + order.total, 0);
+  const totalSpentElement = document.getElementById('totalSpent');
+  if (totalSpentElement) {
+    totalSpentElement.textContent = '$' + totalSpent.toLocaleString();
+  }
+  
+  // Display recent orders (Overview tab)
+  const recentOrdersContainer = document.getElementById('recentOrders');
+  if (recentOrdersContainer && userOrders.length > 0) {
+    const recentOrders = userOrders.slice(0, 3);
+    recentOrdersContainer.innerHTML = recentOrders.map(order => `
+      <div class="order-card">
+        <div class="order-header">
+          <div>
+            <strong>${order.orderNumber}</strong>
+            <p style="color: #6b7280; font-size: 0.875rem; margin-top: 0.25rem;">
+              ${new Date(order.date).toLocaleDateString()}
+            </p>
+          </div>
+          <span class="order-status status-completed">Completed</span>
+        </div>
+        <p style="color: #4b5563; margin-bottom: 0.5rem;">${order.items.length} item(s)</p>
+        <p style="font-size: 1.25rem; font-weight: 700; color: #0284c7;">$${order.total.toLocaleString()}</p>
+      </div>
+    `).join('');
+  }
+  
+  // Display all orders (Orders tab)
+  const ordersListContainer = document.getElementById('ordersList');
+  if (ordersListContainer) {
+    if (userOrders.length === 0) {
+      ordersListContainer.innerHTML = '<p style="color: #6b7280; text-align: center; padding: 2rem;">No orders found.</p>';
+    } else {
+      ordersListContainer.innerHTML = userOrders.map(order => `
+        <div class="order-card">
+          <div class="order-header">
+            <div>
+              <strong>${order.orderNumber}</strong>
+              <p style="color: #6b7280; font-size: 0.875rem; margin-top: 0.25rem;">
+                ${new Date(order.date).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'long', 
+                  day: 'numeric' 
+                })}
+              </p>
+            </div>
+            <span class="order-status status-completed">Completed</span>
+          </div>
+          ${order.items.map(item => `
+            <div style="margin-bottom: 0.5rem;">
+              <strong>${item.name}</strong> × ${item.quantity}
+              <span style="float: right; color: #0284c7; font-weight: 600;">$${(item.price * item.quantity).toLocaleString()}</span>
+            </div>
+          `).join('')}
+          <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+            <p style="font-size: 1.125rem; font-weight: 700; text-align: right;">
+              Total: <span style="color: #0284c7;">$${order.total.toLocaleString()}</span>
+            </p>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+}
+
+function setupAccountEventListeners() {
+  // Profile form submission
+  const profileForm = document.getElementById('profileForm');
+  if (profileForm) {
+    profileForm.addEventListener('submit', handleProfileUpdate);
+  }
+  
+  // Password form submission
+  const passwordForm = document.getElementById('passwordForm');
+  if (passwordForm) {
+    passwordForm.addEventListener('submit', handlePasswordChange);
+  }
+}
+
+function handleProfileUpdate(e) {
+  e.preventDefault();
+  
+  const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+  const users = JSON.parse(localStorage.getItem('esmartboard_users') || '[]');
+  const userIndex = users.findIndex(u => u.email === currentUser.email);
+  
+  if (userIndex !== -1) {
+    users[userIndex].firstName = document.getElementById('profileFirstName').value;
+    users[userIndex].lastName = document.getElementById('profileLastName').value;
+    users[userIndex].phone = document.getElementById('profilePhone').value;
+    
+    localStorage.setItem('esmartboard_users', JSON.stringify(users));
+    
+    // Update current user session
+    currentUser.firstName = users[userIndex].firstName;
+    currentUser.lastName = users[userIndex].lastName;
+    localStorage.setItem('esmartboard_current_user', JSON.stringify(currentUser));
+    
+    // Update displayed name
+    const userNameElement = document.getElementById('userName');
+    if (userNameElement) {
+      userNameElement.textContent = currentUser.firstName;
+    }
+    
+    showNotification('Profile updated successfully!', 'success');
+  }
+}
+
+function handlePasswordChange(e) {
+  e.preventDefault();
+  
+  const currentPassword = document.getElementById('currentPassword').value;
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmNewPassword').value;
+  
+  if (newPassword !== confirmPassword) {
+    showNotification('New passwords do not match!', 'error');
+    return;
+  }
+  
+  if (newPassword.length < 6) {
+    showNotification('Password must be at least 6 characters long!', 'error');
+    return;
+  }
+  
+  const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+  const users = JSON.parse(localStorage.getItem('esmartboard_users') || '[]');
+  const user = users.find(u => u.email === currentUser.email);
+  
+  if (user && user.password === currentPassword) {
+    user.password = newPassword;
+    localStorage.setItem('esmartboard_users', JSON.stringify(users));
+    showNotification('Password changed successfully!', 'success');
+    e.target.reset();
+  } else {
+    showNotification('Current password is incorrect!', 'error');
+  }
+}
+
+function showAccountTab(tabName) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Remove active class from all sidebar items
+  document.querySelectorAll('.sidebar-item').forEach(item => {
+    item.classList.remove('active');
+  });
+  
+  // Show selected tab
+  const selectedTab = document.getElementById(tabName);
+  if (selectedTab) {
+    selectedTab.classList.add('active');
+  }
+  
+  // Add active class to matching sidebar item
+  const matchingItem = document.querySelector(`.sidebar-item[data-tab="${tabName}"]`);
+  if (matchingItem) {
+    matchingItem.classList.add('active');
+  }
+}
+
+function handleAccountLogout() {
+  if (confirm('Are you sure you want to logout?')) {
+    localStorage.removeItem('esmartboard_current_user');
+    window.location.href = 'login.html';
+  }
+}
+
+function deleteUserAccount() {
+  if (confirm('Are you sure you want to delete your account? This action cannot be undone!')) {
+    if (confirm('This will permanently delete all your data. Continue?')) {
+      const currentUser = JSON.parse(localStorage.getItem('esmartboard_current_user'));
+      const users = JSON.parse(localStorage.getItem('esmartboard_users') || '[]');
+      const updatedUsers = users.filter(u => u.email !== currentUser.email);
+      
+      localStorage.setItem('esmartboard_users', JSON.stringify(updatedUsers));
+      localStorage.removeItem('esmartboard_current_user');
+      
+      showNotification('Your account has been deleted.', 'info');
+      
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000);
+    }
+  }
+}
+
+// Make functions globally accessible for onclick handlers
+window.showAccountTab = showAccountTab;
+window.handleAccountLogout = handleAccountLogout;
+window.deleteUserAccount = deleteUserAccount;
 
 // ========================================
 // UTILITY FUNCTIONS
