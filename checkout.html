@@ -23,7 +23,7 @@
     </div>
   </header>
 
-  <main class="py-8">
+  <main class="py-8 checkout-main">
     <div class="container mx-auto px-4">
       <!-- Progress Steps -->
       <div class="mb-8">
@@ -54,13 +54,13 @@
         </div>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 checkout-grid">
         <!-- Main Content -->
         <div class="lg:col-span-2">
           
           <!-- Step 1: Cart Review -->
           <div id="step1" class="checkout-step active">
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6 checkout-card">
               <h2 class="text-2xl font-bold mb-6">Review Your Order</h2>
               
               <div id="checkoutCartItems" class="space-y-4">
@@ -75,7 +75,7 @@
                 <div id="couponMessage" class="text-sm mb-4"></div>
               </div>
               
-              <div class="flex justify-between">
+              <div class="flex justify-between checkout-actions">
                 <a href="school.html" class="btn-secondary">
                   <i class="fas fa-arrow-left mr-2"></i>Continue Shopping
                 </a>
@@ -88,7 +88,7 @@
 
           <!-- Step 2: Customer Information -->
           <div id="step2" class="checkout-step">
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6 checkout-card">
               <h2 class="text-2xl font-bold mb-6">Contact Information</h2>
               
               <form id="contactForm" class="space-y-4">
@@ -149,7 +149,7 @@
                 </div>
               </form>
               
-              <div class="flex justify-between mt-6">
+              <div class="flex justify-between mt-6 checkout-actions">
                 <button onclick="prevStep(1)" class="btn-secondary">
                   <i class="fas fa-arrow-left mr-2"></i>Back to Cart
                 </button>
@@ -162,7 +162,7 @@
 
           <!-- Step 3: Payment -->
           <div id="step3" class="checkout-step">
-            <div class="bg-white rounded-xl shadow-md p-6 mb-6">
+            <div class="bg-white rounded-xl shadow-md p-6 mb-6 checkout-card">
               <h2 class="text-2xl font-bold mb-6">Payment Method</h2>
               
               <div class="space-y-4 mb-6">
@@ -264,7 +264,7 @@
                 </div>
               </div>
               
-              <div class="flex justify-between mt-6">
+              <div class="flex justify-between mt-6 checkout-actions">
                 <button onclick="prevStep(2)" class="btn-secondary">
                   <i class="fas fa-arrow-left mr-2"></i>Back
                 </button>
@@ -277,7 +277,7 @@
 
           <!-- Step 4: Confirmation -->
           <div id="step4" class="checkout-step">
-            <div class="bg-white rounded-xl shadow-md p-8 text-center">
+            <div class="bg-white rounded-xl shadow-md p-8 text-center checkout-card">
               <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                 <i class="fas fa-check text-4xl text-green-600"></i>
               </div>
@@ -326,7 +326,7 @@
 
         <!-- Order Summary Sidebar -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-xl shadow-md p-6 sticky top-24">
+          <div class="bg-white rounded-xl shadow-md p-6 sticky top-24 checkout-card checkout-summary">
             <h3 class="text-xl font-bold mb-4">Order Summary</h3>
             
             <div class="space-y-3 mb-6" id="summaryItems">
@@ -377,6 +377,10 @@
   </main>
 
   <script src="./src/js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    emailjs.init("YOUR_EMAILJS_PUBLIC_KEY");
+  </script>
   <script src="./src/js/checkout.js"></script>
 </body>
 </html>

@@ -33,13 +33,13 @@ function loadCheckoutCart() {
   }
   
   checkoutCartItems.innerHTML = cart.map((item, index) => `
-    <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-      <div class="flex-1">
-        <h4 class="font-bold">${item.name}</h4>
-        <p class="text-sm text-gray-600">Quantity: ${item.quantity}</p>
-        <p class="text-lg font-semibold text-blue-600 mt-1">$${(item.price * item.quantity).toLocaleString()}</p>
+    <div class="checkout-item">
+      <div class="checkout-item-main">
+        <h4 class="checkout-item-title">${item.name}</h4>
+        <p class="checkout-item-qty">Quantity: ${item.quantity}</p>
       </div>
-      <button onclick="removeItemFromCheckout(${index})" class="text-red-500 hover:text-red-700">
+      <div class="checkout-item-price">$${(item.price * item.quantity).toLocaleString()}</div>
+      <button onclick="removeItemFromCheckout(${index})" class="checkout-item-remove" aria-label="Remove item">
         <i class="fas fa-times"></i>
       </button>
     </div>
@@ -276,13 +276,40 @@ function completeOrder() {
 
 // Simulate sending confirmation email
 function sendOrderConfirmation(order) {
-  console.log('Order confirmation sent to:', order.customerInfo.email);
-  console.log('Order details:', order);
-  
-  // In production, this would call your backend API
-  // fetch('/api/orders', {
-  //   method: 'POST',
-  //   body: JSON.stringify(order),
-  //   headers: { 'Content-Type': 'application/json' }
-  // });
+  const serviceId = 'YOUR_EMAILJS_SERVICE_ID';
+  const templateId = 'YOUR_EMAILJS_TEMPLATE_ID';
+
+  if (!window.emailjs) {
+    console.warn('EmailJS not loaded. Skipping email send.');
+    return;
+  }
+
+  const itemsSummary = order.items
+    .map(item => `${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString()}`)
+    .join('\n');
+
+  const templateParams = {
+    order_number: order.orderNumber,
+    order_date: new Date(order.date).toLocaleString(),
+    customer_name: `${order.customerInfo.firstName || ''} ${order.customerInfo.lastName || ''}`.trim(),
+    customer_email: order.customerInfo.email || '',
+    customer_phone: order.customerInfo.phone || '',
+    organization: order.customerInfo.organization || '',
+    address: order.customerInfo.address || '',
+    city: order.customerInfo.city || '',
+    county: order.customerInfo.county || '',
+    postal_code: order.customerInfo.postalCode || '',
+    subtotal: `$${order.subtotal.toLocaleString()}`,
+    discount: order.discount > 0 ? `-$${order.discount.toLocaleString()}` : '$0',
+    total: `$${order.total.toLocaleString()}`,
+    items: itemsSummary
+  };
+
+  emailjs.send(serviceId, templateId, templateParams)
+    .then(() => {
+      console.log('Order confirmation sent to:', order.customerInfo.email);
+    })
+    .catch((error) => {
+      console.error('Failed to send order confirmation:', error);
+    });
 }

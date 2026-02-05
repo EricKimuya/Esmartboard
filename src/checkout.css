@@ -1,5 +1,81 @@
 /* Checkout Page Styles */
 
+/* Layout */
+.checkout-main {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.checkout-grid {
+  align-items: start;
+}
+
+.checkout-card {
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.checkout-summary {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.checkout-actions {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.checkout-actions .btn-primary,
+.checkout-actions .btn-secondary {
+  min-width: 200px;
+}
+
+/* Cart Items */
+.checkout-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.checkout-item-title {
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.checkout-item-qty {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.checkout-item-price {
+  font-weight: 700;
+  color: #0284c7;
+  white-space: nowrap;
+}
+
+.checkout-item-remove {
+  height: 36px;
+  width: 36px;
+  border-radius: 999px;
+  border: 1px solid #fecaca;
+  background: #fff1f2;
+  color: #e11d48;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.checkout-item-remove:hover {
+  background: #ffe4e6;
+  color: #be123c;
+}
+
 /* Progress Steps */
 .step-circle {
   width: 50px;
@@ -140,6 +216,20 @@ textarea:focus {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .checkout-actions .btn-primary,
+  .checkout-actions .btn-secondary {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .checkout-item {
+    grid-template-columns: 1fr auto;
+  }
+
+  .checkout-item-remove {
+    justify-self: end;
+  }
+
   .step-line {
     width: 40px;
   }

@@ -3,6 +3,7 @@
 // ========================================
 document.addEventListener('DOMContentLoaded', () => {
   updateHeaderUserStatus();
+  setupHeaderShrink();
 });
 
 function updateHeaderUserStatus() {
@@ -64,6 +65,28 @@ window.addEventListener('storage', function(e) {
 
 // Make function globally accessible
 window.updateHeaderUserStatus = updateHeaderUserStatus;
+
+// ========================================
+// HEADER SHRINK ON SCROLL
+// ========================================
+function setupHeaderShrink() {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  const shrinkClass = 'header--shrink';
+  const shrinkOffset = 40;
+
+  const onScroll = () => {
+    if (window.scrollY > shrinkOffset) {
+      header.classList.add(shrinkClass);
+    } else {
+      header.classList.remove(shrinkClass);
+    }
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+}
 
 // ========================================
 // SWIPER INITIALIZATION
