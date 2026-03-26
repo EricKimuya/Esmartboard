@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Esmartboard</title>
+  <link rel="icon" type="image/png" href="./public/css/images/favicon-32x32.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .login-container {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      width: 100%;
+      max-width: 1000px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 600px;
+    }
+
+    .login-left {
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      padding: 60px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-left::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      top: -50%;
+      left: -50%;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .login-left-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .logo {
+      width: 390px;
+      margin-bottom: 40px;
+    }
+
+    .login-left h1 {
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .login-left p {
+      font-size: 18px;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    .login-right {
+      padding: 60px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .login-header h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #1f2937;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      color: #6b7280;
+      font-size: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 25px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+
+    .input-wrapper {
+      position: relative;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      font-size: 15px;
+      transition: all 0.3s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.1);
+    }
+
+    .password-toggle {
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      font-size: 16px;
+      padding: 4px;
+    }
+
+    .password-toggle:hover {
+      color: #0284c7;
+    }
+
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .remember-me input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      color: #0284c7;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .forgot-link:hover {
+      text-decoration: underline;
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-login:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(2, 132, 199, 0.3);
+    }
+
+    .divider {
+      text-align: center;
+      margin: 30px 0;
+      position: relative;
+    }
+
+    .divider::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      width: 100%;
+      height: 1px;
+      background: #e5e7eb;
+    }
+
+    .divider span {
+      position: relative;
+      background: white;
+      padding: 0 15px;
+      color: #9ca3af;
+      font-size: 14px;
+    }
+
+    .social-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 12px;
+      border: 2px solid #e5e7eb;
+      border-radius: 10px;
+      background: white;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-weight: 600;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .social-btn:hover {
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    .signup-link {
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .signup-link a {
+      color: #0284c7;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .signup-link a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .login-container {
+        grid-template-columns: 1fr;
+        max-width: 450px;
+      }
+
+      .login-left {
+        display: none;
+      }
+
+      .login-right {
+        padding: 40px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-left">
+      <div class="login-left-content">
+        <img src="./public/css/images/esmart no bg.png" alt="Esmartboard" class="logo">
+        <h1>Welcome Back to Esmartboard</h1>
+        <p>Sign in to access your account and continue your journey with us.</p>
+      </div>
+    </div>
+
+    <div class="login-right">
+      <div class="login-header">
+        <h2>Sign In</h2>
+        <p>Enter your credentials to access your account</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" class="form-input" id="email" placeholder="you@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Password</label>
+          <div class="input-wrapper">
+            <input type="password" class="form-input" id="password" placeholder="Enter your password" required>
+            <button type="button" class="password-toggle" onclick="togglePassword()">
+              <i class="fas fa-eye" id="toggleIcon"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-me">
+            <input type="checkbox">
+            <span>Remember me</span>
+          </label>
+          <a href="forgot-password.html" class="forgot-link">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn-login">Sign In</button>
+      </form>
+
+      <div class="divider">
+        <span>Or continue with</span>
+      </div>
+
+      <div class="social-buttons">
+        <button class="social-btn">
+          <i class="fab fa-google" style="color: #EA4335;"></i>
+          Google
+        </button>
+        <button class="social-btn">
+          <i class="fab fa-facebook" style="color: #1877F2;"></i>
+          Facebook
+        </button>
+      </div>
+
+      <div class="signup-link">
+        Don't have an account? <a href="signup.html">Sign up for free</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function togglePassword() {
+      const passwordInput = document.getElementById('password');
+      const toggleIcon = document.getElementById('toggleIcon');
+      
+      if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        toggleIcon.classList.remove('fa-eye');
+        toggleIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = 'password';
+        toggleIcon.classList.remove('fa-eye-slash');
+        toggleIcon.classList.add('fa-eye');
+      }
+    }
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      const users = JSON.parse(localStorage.getItem('esmartboard_users') || '[]');
+      const user = users.find(u => u.email === email && u.password === password);
+      
+      if (user) {
+        // Save current user session
+        localStorage.setItem('esmartboard_current_user', JSON.stringify({
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          loginTime: new Date().toISOString()
+        }));
+        
+        alert('Login successful! Redirecting...');
+        
+        // Redirect to index page (header will auto-update on page load)
+        setTimeout(() => window.location.href = 'index.html', 1000);
+      } else {
+        alert('Invalid email or password');
+      }
+    });
+  </script>
+</body>
+</html>
